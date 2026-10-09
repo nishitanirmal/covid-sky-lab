@@ -1,0 +1,1079 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Covid Sky Lab</title>
+<meta name="description" content="Twenty-seven people photographed the same patch of sky every day of India's 2020 lockdown. Ways of reading what they kept.">
+<style>html{color-scheme:light dark}body{margin:0}img{max-width:100%}</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+</head>
+<body>
+<style>
+:root{
+  --ground:#EEF1F5; --surface:#F8F9FB; --sunk:#E3E7ED; --ink:#151C26; --ink2:#3C4754; --muted:#66707C; --line:#C9D0D9; --line2:#DEE3E9;
+  --accent:#C4611C; --accent-ink:#8F4411; --night:#0E1319;
+  --display:"Newsreader",Georgia,"Times New Roman",serif;
+  --body:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#0E1319; --surface:#151C25; --sunk:#0A0E13; --ink:#E6EAEF; --ink2:#C2CAD3; --muted:#8C97A4; --line:#2B3541; --line2:#212A34;
+    --accent:#E48A3E; --accent-ink:#F0A868; --night:#05080B;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0E1319; --surface:#151C25; --sunk:#0A0E13; --ink:#E6EAEF; --ink2:#C2CAD3; --muted:#8C97A4; --line:#2B3541; --line2:#212A34;
+  --accent:#E48A3E; --accent-ink:#F0A868; --night:#05080B;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:var(--accent-ink);text-decoration:none;border-bottom:1px solid var(--line)}
+a:hover{border-bottom-color:var(--accent)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 28px 96px}
+header.top{padding:64px 0 40px;border-bottom:1px solid var(--line)}
+.eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(40px,6vw,64px);line-height:1;letter-spacing:-.01em;margin:10px 0 18px;text-wrap:balance}
+h1 em{font-style:italic;color:var(--accent-ink)}
+.lede{font-size:17px;max-width:62ch;color:var(--ink2);margin:0}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:0;margin-top:34px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.fact{padding:14px 16px 14px 0;border-right:1px solid var(--line2)}
+.fact:last-child{border-right:0}
+.fact b{display:block;font-family:var(--display);font-weight:400;font-size:30px;line-height:1;font-variant-numeric:tabular-nums}
+.fact span{font-size:12.5px;color:var(--muted)}
+nav.toc{display:flex;flex-wrap:wrap;gap:6px 18px;padding:18px 0;font-family:var(--mono);font-size:12px}
+nav.toc a{border:0;color:var(--muted)}
+nav.toc a:hover{color:var(--ink)}
+section.proto{padding:56px 0 20px;border-bottom:1px solid var(--line)}
+.proto-head{display:grid;grid-template-columns:72px 1fr;gap:20px;align-items:start;margin-bottom:22px}
+.num{font-family:var(--display);font-size:56px;line-height:.9;color:var(--muted);font-variant-numeric:tabular-nums}
+h2{font-family:var(--display);font-weight:500;font-size:30px;line-height:1.1;margin:0 0 8px;text-wrap:balance}
+.proto-head p{margin:0;max-width:66ch;color:var(--ink2)}
+.stage{background:var(--surface);border:1px solid var(--line2);padding:20px;overflow-x:auto}
+.controls{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:14px;font-family:var(--mono);font-size:12.5px}
+.controls input[type=range]{flex:1;min-width:200px;accent-color:var(--accent)}
+.controls button{font:inherit;font-family:var(--mono);background:var(--ink);color:var(--ground);border:0;padding:6px 12px;cursor:pointer}
+.controls .opt{background:transparent;color:var(--muted);border:1px solid var(--line);padding:4px 10px}
+.controls .opt.on{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+.controls button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.date{font-variant-numeric:tabular-nums;min-width:15ch;color:var(--ink)}
+.count{color:var(--muted)}
+.controls .speed{display:flex;align-items:center;gap:8px;color:var(--muted);margin-left:auto}
+.controls .speed span{min-width:9ch;font-variant-numeric:tabular-nums}
+.controls select{font:inherit;font-family:var(--mono);background:var(--surface);color:var(--ink);border:1px solid var(--line);padding:3px 6px}
+.note{margin:14px 0 0;font-size:13px;color:var(--muted);max-width:80ch}
+.note b{color:var(--ink2);font-weight:500}
+.chip{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.04em;padding:2px 7px;border:1px solid var(--line);color:var(--muted);vertical-align:middle;margin-left:6px}
+
+/* 1 attendance */
+.att{display:grid;grid-template-columns:260px 1fr;gap:0 10px;font-family:var(--mono);font-size:11.5px}
+.att .lab{display:flex;justify-content:space-between;align-items:center;height:22px;color:var(--ink2);white-space:nowrap;overflow:hidden}
+.att .lab .t{color:var(--muted);min-width:5ch}
+.att .lab .n{flex:1;padding:0 8px;overflow:hidden;text-overflow:ellipsis}
+.att .lab .n small{color:var(--muted)}
+.att .lab .k{color:var(--muted);font-variant-numeric:tabular-nums}
+.att .row{position:relative;height:22px}
+.att .cell{position:absolute;top:3px;height:16px;cursor:pointer}
+.att .cell:hover{outline:1.5px solid var(--accent);z-index:2}
+.att .axis{position:relative;height:20px;grid-column:2}
+.att .axis span{position:absolute;top:0;color:var(--muted);border-left:1px solid var(--line);padding-left:5px;line-height:20px}
+.att .row .tick{position:absolute;top:0;bottom:0;border-left:1px solid var(--line2)}
+
+/* 2 grid */
+.grid26{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:8px}
+.cellp{position:relative;aspect-ratio:4/3;background:var(--night);overflow:hidden}
+.cellp img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.cellp .cap{position:absolute;left:0;right:0;bottom:0;padding:5px 7px;font-family:var(--mono);font-size:10.5px;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.65));line-height:1.25}
+.cellp.notyet{opacity:.25}
+.cellp.done .cap{color:rgba(255,255,255,.5)}
+.cellp.missed{background:repeating-linear-gradient(45deg,var(--sunk) 0 6px,var(--night) 6px 12px)}
+.cellp.missed .cap{color:#aaa}
+
+/* 3 average */
+.avgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:14px 12px}
+.avgrid figure{margin:0}
+.avgrid img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+.avgrid figcaption{font-family:var(--mono);font-size:11px;color:var(--muted);line-height:1.35;margin-top:6px}
+.avgrid figcaption b{color:var(--ink);font-weight:500;display:block}
+.daystrip{display:flex;gap:2px;overflow-x:auto;padding-bottom:8px;margin-top:26px}
+.daystrip .d{flex:0 0 auto;width:56px}
+.daystrip img{width:56px;height:42px;object-fit:cover;display:block}
+.daystrip .d small{display:block;font-family:var(--mono);font-size:9.5px;color:var(--muted);text-align:center;margin-top:3px;white-space:nowrap}
+
+/* 4 fingerprint */
+.fpgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px 12px}
+.fp{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--sunk)}
+.fp img{position:absolute;inset:0;width:100%;height:100%;display:block}
+.fp .cap{position:absolute;left:0;bottom:0;right:0;padding:5px 7px;font-family:var(--mono);font-size:10.5px;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.6)}
+
+/* 5 choir */
+.choir{position:relative;display:grid;grid-template-columns:56px 1fr;gap:0 12px}
+.choir .band{display:contents}
+.choir .band .bl{font-family:var(--mono);font-size:11px;color:var(--muted);border-top:1px solid var(--line2);padding-top:3px;line-height:1}
+.choir .band .bc{position:relative;border-top:1px solid var(--line2);display:flex;flex-wrap:wrap;gap:6px 14px;padding:5px 0 7px;min-height:12px}
+.choir .band.empty .bl,.choir .band.empty .bc{min-height:0;padding-top:0;padding-bottom:0;height:10px;line-height:10px;font-size:9px}
+.choir .voice{display:flex;align-items:center;gap:7px;transition:opacity .2s;position:relative}
+.choir .voice img{width:52px;height:39px;object-fit:cover;display:block;background:var(--night)}
+.choir .voice .who{font-family:var(--mono);font-size:10.5px;line-height:1.25;color:var(--ink2);white-space:nowrap}
+.choir .voice .who small{color:var(--muted);display:block}
+.choir .voice.off{opacity:.22}
+.choir .voice.off img{visibility:hidden}
+.choir .band.now .bc{background:color-mix(in srgb,var(--accent) 8%,transparent)}
+.choir .voice.beep img{outline:2px solid var(--accent);outline-offset:1px}
+.choir .voice.beep .who{color:var(--accent-ink)}
+
+/* 6 ribbons */
+.rod{position:relative;height:6px;background:var(--ink);margin:0 0 0}
+.ribbons{position:relative;display:flex;gap:10px;align-items:flex-start;padding-top:0;min-height:520px;overflow-x:auto}
+.ribbon{flex:0 0 auto;width:30px;display:flex;flex-direction:column}
+.ribbon .hang{width:1px;background:var(--line);margin:0 auto}
+.ribbon .slice{height:5px;width:30px;background-size:100% auto;background-position:top center;background-repeat:no-repeat}
+.ribbon .slice.gap{background:transparent;border-left:1px dashed var(--line);border-right:1px dashed var(--line);margin:0 auto;width:14px}
+.ribbon .tag{writing-mode:vertical-rl;font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:8px;white-space:nowrap}
+
+/* 7 map */
+.map{display:grid;grid-template-columns:1fr 240px;gap:20px;align-items:start}
+.map svg{width:100%;height:auto;display:block}
+.map .land{fill:var(--sunk);stroke:var(--line);stroke-width:1}
+.map .city text{font-family:var(--mono);font-size:10px;fill:var(--muted)}
+.map .legend{font-family:var(--mono);font-size:12px;color:var(--ink2);line-height:1.5}
+.map .legend .r{display:flex;justify-content:space-between;gap:8px;border-bottom:1px solid var(--line2);padding:3px 0}
+.map .legend .r i{display:inline-block;width:12px;height:12px;vertical-align:-1px;margin-right:6px;border:1px solid var(--line)}
+
+/* 8 chart */
+.chart svg{width:100%;height:auto;display:block;font-family:var(--mono);font-size:11px}
+.chart .grid line{stroke:var(--line2)}
+.chart text{fill:var(--muted)}
+.chart .ax{stroke:var(--line)}
+.chart .sky{fill:none;stroke:var(--ink);stroke-width:2;stroke-linejoin:round}
+.chart .dots circle{fill:var(--ink)}
+.chart .slot{fill:none;stroke:var(--accent);stroke-width:1.5;stroke-dasharray:4 4}
+.chart .ann text{fill:var(--accent-ink)}
+.chart .ann line{stroke:var(--accent)}
+.legend8{display:flex;gap:22px;font-family:var(--mono);font-size:12px;color:var(--ink2);margin-bottom:10px;flex-wrap:wrap}
+.legend8 i{display:inline-block;width:18px;border-top:2px solid var(--ink);vertical-align:middle;margin-right:6px}
+.legend8 i.s{border-top:1.5px dashed var(--accent)}
+
+/* 9 tunes */
+.scale9{display:flex;align-items:flex-end;gap:2px;height:64px}
+.scale9 .sw{flex:1;display:flex;flex-direction:column;justify-content:flex-end;height:100%}
+.scale9 .sw i{display:block;width:100%}
+.scale9 .sw small{font-family:var(--mono);font-size:9px;color:var(--muted);text-align:center;white-space:nowrap;margin-top:3px}
+.att.tunes .lab,.att.tunes .row{cursor:pointer}
+.att.tunes .lab.sel .n{color:var(--ink)}
+.att.tunes .lab.sel .t::before{content:"\25A0";color:var(--accent);margin-right:6px}
+.att.tunes .lab:not(.sel){opacity:.45}
+.att.tunes .row:not(.sel) .cell{opacity:.25}
+.att.tunes .cell.on{outline:2px solid var(--accent);z-index:3}
+.att.tunes .cell.hold{outline:2px dashed var(--accent);z-index:3}
+.att.tunes .head{position:absolute;top:0;bottom:0;border-left:1px solid var(--accent);z-index:4;pointer-events:none}
+.att.tunes{position:relative}
+/* 10 sun */
+.att.sun .cell{top:2px;height:18px;width:7px;margin-left:-3px;opacity:.9}
+.att.sun .axis span{border-left:1px solid var(--line)}
+.att.sun .row .tick{border-left:1px solid var(--line2)}
+
+/* 11 journeys */
+.journeys{padding:28px 24px}
+.j{display:grid;grid-template-columns:1fr;gap:10px;margin-bottom:34px}
+.jband{display:flex;height:110px;gap:0;cursor:crosshair;position:relative}
+.jband .sl{flex:1 1 0;background-size:cover;background-position:center 18%;min-width:1px}
+.jband .sl.gap{flex:0 0 3px;background:var(--night)}
+.jcap{display:grid;grid-template-columns:260px 1fr;gap:20px;align-items:baseline}
+.jcap h3{font-family:var(--display);font-weight:400;font-style:italic;font-size:26px;margin:0;line-height:1.1}
+.jcap h3 small{display:block;font-style:normal;font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:.02em}
+.jcap p{margin:0;font-size:14.5px;color:var(--ink2);max-width:70ch}
+#lens{position:fixed;z-index:60;pointer-events:none;display:none;width:220px;height:220px;border-radius:50%;background-size:cover;background-position:center;box-shadow:0 0 0 3px var(--surface),0 0 0 4px var(--ink),0 18px 40px rgba(0,0,0,.35)}
+#lens span{position:absolute;left:50%;bottom:-30px;transform:translateX(-50%);font-family:var(--mono);font-size:11px;color:var(--ink);background:var(--surface);padding:2px 8px;white-space:nowrap}
+@media (max-width:760px){ .jcap{grid-template-columns:1fr} }
+
+/* 12 the day it was */
+.day12:focus-visible{outline:2px solid var(--accent)}
+.bigframe{width:100%;max-width:880px;aspect-ratio:4/3;background-color:var(--night);background-repeat:no-repeat;background-size:100% auto;margin:0 auto}
+.daycap{display:grid;grid-template-columns:300px 1fr;gap:28px;max-width:880px;margin:18px auto 0}
+.dc-date{font-family:var(--display);font-style:italic;font-size:34px;line-height:1.05}
+.dc-who{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:8px;line-height:1.5}
+.dc-phase{display:inline-block;font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent-ink);border:1px solid var(--accent);padding:2px 7px;margin-top:12px}
+.dc-right p{margin:0 0 10px;max-width:62ch}
+.dc-cases{font-size:15.5px;color:var(--ink)}
+.dc-cases b{font-family:var(--display);font-style:italic;font-weight:400;font-size:22px}
+.dc-line{font-size:13.5px;color:var(--ink2)}
+.dc-line small{display:block;font-family:var(--mono);font-size:10.5px;color:var(--muted);margin-top:3px}
+.dc-head{font-family:var(--mono);font-size:11.5px;color:var(--muted);border-left:2px solid var(--line);padding-left:10px}
+.dc-head .hl-city{display:block;font-size:10px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:3px}
+.dc-head a{font-family:var(--body);font-size:15px;color:var(--ink);border:0;display:block;line-height:1.35}
+.dc-head a:hover{color:var(--accent-ink)}
+.dc-head small{display:block;margin-top:5px;font-size:11px;line-height:1.5}
+@media (max-width:760px){ .daycap{grid-template-columns:1fr} }
+
+/* 13 yours */
+.cover13{position:relative}
+.cover13 .jband{height:170px}
+.head13{position:absolute;top:-6px;bottom:-6px;width:0;border-left:2px solid var(--accent);display:none;pointer-events:none}
+.yours13 .jcap h3{font-size:30px}
+
+/* 14 what moved */
+.mv{display:grid;grid-template-columns:320px 1fr;gap:18px;align-items:start;padding:18px 0;border-top:1px solid var(--line2)}
+.mv:first-child{border-top:0;padding-top:0}
+.mv img.ov{width:320px;height:240px;display:block}
+.mv h3{font-family:var(--display);font-style:italic;font-weight:400;font-size:22px;margin:0 0 6px;line-height:1.1}
+.mv h3 small{font-style:normal;font-family:var(--mono);font-size:11px;color:var(--muted);margin-left:8px}
+.mv .strip{margin-bottom:12px}
+.mv .strip .lab{font-family:var(--mono);font-size:10.5px;color:var(--accent-ink);margin-bottom:4px}
+.mv .strip .cells{display:flex;gap:2px;overflow-x:auto}
+.mv .strip .cells i{flex:0 0 56px;height:56px;background-repeat:no-repeat;background-size:auto 56px;display:block}
+@media (max-width:760px){ .mv{grid-template-columns:1fr} }
+
+/* lab shell: nav panel left, approach right */
+.wrap{max-width:none;padding:0;display:grid;grid-template-columns:270px minmax(0,1fr);min-height:100vh}
+.side{position:sticky;top:0;height:100vh;overflow-y:auto;border-right:1px solid var(--line);padding:26px 22px 40px;background:var(--surface)}
+.side .brand{font-family:var(--display);font-size:26px;color:var(--ink);border:0;display:block;line-height:1;margin-bottom:4px}
+.side .sub{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:22px}
+.side h4{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:20px 0 6px;font-weight:500}
+.side ul{list-style:none;margin:0;padding:0}
+.side li a{display:grid;grid-template-columns:26px 1fr;gap:6px;align-items:baseline;padding:5px 6px;margin:0 -6px;border:0;color:var(--ink2);font-size:14px;line-height:1.3;border-radius:2px}
+.side li a .n{font-family:var(--mono);font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums}
+.side li a:hover{background:var(--sunk);color:var(--ink)}
+.side li a.on{background:var(--ink);color:var(--ground)}
+.side li a.on .n{color:var(--ground);opacity:.7}
+.main{padding:0 40px 96px;min-width:0}
+.labnav{display:flex;gap:18px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:12px}
+.labnav a{border:0;color:var(--muted)}
+.labnav a:hover{color:var(--ink)}
+.labnav .here{color:var(--ink)}
+.labnav .spacer{flex:1}
+.labnav .act{font:inherit;font-family:var(--mono);background:transparent;color:var(--muted);border:1px solid var(--line);padding:4px 10px;cursor:pointer}
+.labnav .act:hover{color:var(--ink);border-color:var(--ink)}
+.labnav .act.on{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+.labnav .act.del:hover{color:var(--accent-ink);border-color:var(--accent)}
+.side li a.saved .n::after{content:"\25CF";color:var(--accent);margin-left:4px;font-size:8px;vertical-align:middle}
+.side li a.deleted{opacity:.4;text-decoration:line-through}
+.side h4.bin{margin-top:26px}
+.side li.empty{font-family:var(--mono);font-size:11px;color:var(--muted);padding:4px 0}
+.rooms li.deleted{opacity:.4}
+.rooms li.saved .n{color:var(--accent-ink)}
+.rooms{margin-top:10px}
+.rooms h3{font-family:var(--display);font-weight:500;font-size:22px;margin:34px 0 8px}
+.rooms ul{list-style:none;margin:0;padding:0}
+.rooms li{display:grid;grid-template-columns:48px 1fr;gap:12px;align-items:baseline;padding:10px 0;border-top:1px solid var(--line2)}
+.rooms li .n{font-family:var(--display);font-size:24px;color:var(--muted);font-variant-numeric:tabular-nums}
+.rooms li a{font-family:var(--display);font-size:22px;color:var(--ink);border:0}
+.rooms li a:hover{color:var(--accent-ink)}
+.rooms li span{display:block;font-size:14px;color:var(--ink2);margin-top:2px}
+body.room header.top,body.room .rooms,body.room section.refs{display:none}
+body.home section.proto{display:none}
+body.home .labnav{display:none}
+section.proto{border-bottom:0}
+@media (max-width:820px){ .wrap{grid-template-columns:1fr} .side{position:static;height:auto;border-right:0;border-bottom:1px solid var(--line)} .main{padding:0 20px 60px} }
+
+/* 15 air */
+.att.air .row{height:34px}
+.att.air .lab{height:34px}
+.att.air .cell{top:2px;height:14px}
+.att.air .bar{position:absolute;bottom:2px;width:.72%;background:var(--ink);opacity:.55}
+.att.air .bar.none{height:2px;background:var(--line);opacity:1}
+.att.air .row .base{position:absolute;left:0;right:0;bottom:2px;border-top:1px solid var(--line2)}
+.legend15{display:flex;gap:18px;flex-wrap:wrap;font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:10px}
+.legend15 i{display:inline-block;width:10px;height:10px;border-radius:50%;vertical-align:-1px;margin-right:5px}
+.chart .pt{fill-opacity:.75;stroke:var(--surface);stroke-width:.5}
+.chart .ax text{fill:var(--muted)}
+
+/* 16 pairs */
+.pair{display:grid;grid-template-columns:200px 1fr 1fr;gap:16px;align-items:start;padding:18px 0;border-top:1px solid var(--line2)}
+.pair:first-child{border-top:0;padding-top:0}
+.pair h3{font-family:var(--display);font-style:italic;font-weight:400;font-size:24px;margin:0;line-height:1.1}
+.pair h3 small{display:block;font-style:normal;font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:6px;line-height:1.5}
+.pair .fr{width:100%;aspect-ratio:4/3;background-color:var(--night);background-repeat:no-repeat;background-size:100% auto}
+.pair .cap{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:6px;line-height:1.5}
+.pair .cap b{display:block;font-family:var(--display);font-style:italic;font-weight:400;font-size:20px;color:var(--ink);line-height:1.1;margin-bottom:2px}
+.pair .cap .aq{color:var(--ink);font-weight:500}
+.pair .cap .tag{display:inline-block;font-size:10px;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--line);padding:1px 6px;margin-bottom:6px}
+@media (max-width:820px){ .pair{grid-template-columns:1fr} }
+
+/* tooltip */
+#tip{position:fixed;z-index:50;pointer-events:none;background:var(--ink);color:var(--ground);padding:6px;font-family:var(--mono);font-size:11px;line-height:1.35;display:none;max-width:220px}
+#tip img{display:block;width:192px;height:144px;object-fit:cover;margin-bottom:5px}
+
+/* references */
+section.refs{padding:56px 0 0}
+.refgroup{margin-top:30px}
+.refgroup h3{font-family:var(--display);font-weight:500;font-size:22px;margin:0 0 10px}
+.reflist{list-style:none;margin:0;padding:0;columns:2;column-gap:40px}
+.reflist li{break-inside:avoid;padding:8px 0;border-top:1px solid var(--line2);font-size:14px}
+.reflist li b{font-weight:500;color:var(--ink)}
+.reflist li span{display:block;color:var(--muted);font-size:13px}
+.reflist li .u{font-family:var(--mono);font-size:11.5px;word-break:break-all}
+@media (max-width:760px){
+  .att{grid-template-columns:150px 1fr} .map{grid-template-columns:1fr} .reflist{columns:1} .proto-head{grid-template-columns:48px 1fr} .num{font-size:40px}
+}
+@media (prefers-reduced-motion:reduce){ .choir .voice{transition:none} }
+</style>
+
+<div class="wrap">
+<header class="top">
+  <div class="eyebrow">The sky project, 25 March to 10 August 2020</div>
+  <h1>Covid Sky Lab</h1>
+  <p class="lede">Twenty-seven people photographed the same patch of sky from home every day of India's 2020 lockdown, at a minute each of them chose. These are ways of reading what they kept. Every swatch, strip, note and thumbnail comes from the photographs. Each approach is its own page.</p>
+  <div class="facts" id="facts"></div>
+  
+</header>
+
+<section class="proto" id="p1">
+  <div class="proto-head"><div class="num">1</div><div>
+    <h2>The attendance sheet</h2>
+    <p>One row per person, ordered by the clock time they chose, one swatch per day. The swatch is the mean colour of the top third of that day's photo. Gaps are left as gaps. Hover a cell to see the frame.</p>
+  </div></div>
+  <div class="stage"><div class="controls">order by <button class="opt on" data-o="time">clock time</button><button class="opt" data-o="lat">north to south</button><button class="opt" data-o="n">days shown up</button></div><div class="att" id="att"></div></div>
+  <p class="note"><b>Draws on</b> On Kawara's I Got Up and Holland Hopson's Average Color of the Sky. <b>Build</b> as a long horizontal print (139 columns) or a scrolling web page; the row order by clock time is what makes it more than a calendar.</p>
+</section>
+
+<section class="proto" id="p2">
+  <div class="proto-head"><div class="num">2</div><div>
+    <h2>The grid timelapse</h2>
+    <p>Every person is a cell. Press play and the archive runs at one day per frame. A cell is dim before its person starts, hatched on a day they missed, and fades once they stop. Watch how many are left in August.</p>
+  </div></div>
+  <div class="stage">
+    <div class="controls"><button id="play2">Play</button><button id="shuffle2" class="opt">Shuffle</button><input type="range" id="day2" min="0" max="138" value="0"><span class="date" id="date2"></span><span class="count" id="count2"></span><label class="speed">speed <input type="range" id="speed2" min="1" max="12" value="4" style="width:110px;min-width:0;flex:none"> <span id="speedv2">4 days/s</span></label></div>
+    <div class="grid26" id="grid2"></div>
+  </div>
+  <p class="note"><b>Draws on</b> Tehching Hsieh's Time Clock Piece. <b>Build</b> as a single video for a wall, with one click of sound per photo taken; the sound thins out as the grid empties.</p>
+</section>
+
+<section class="proto" id="p3">
+  <div class="proto-head"><div class="num">3</div><div>
+    <h2>The averaged sky</h2>
+    <p>Two averages. First, every frame a person shot, stacked and averaged: their view as a portrait, with the sky as a blur of all their days. Second, the sky bands of everyone who shot on a given day, averaged into one strip: the country's late-afternoon sky, day by day.</p>
+  </div></div>
+  <div class="stage">
+    <div class="avgrid" id="avg3"></div>
+    <div class="eyebrow" style="margin-top:28px">One sky per day, averaged across everyone who shot (days with three or more people)</div>
+    <div class="daystrip" id="days3"></div>
+  </div>
+  <p class="note"><b>Draws on</b> Jason Salavon's amalgamations and Penelope Umbrico's Suns. <b>Build</b> as a print set of 26 portraits captioned name, area, city, time, days; the day strip as a long ribbon print.</p>
+</section>
+
+<section class="proto" id="p4">
+  <div class="proto-head"><div class="num">4</div><div>
+    <h2>The frame as fingerprint</h2>
+    <p>Pixels that barely changed across a person's run are their fixed frame: a roof edge, a tower, a tank, a tree. Everything that changed is the sky. Here the sky is removed and replaced by the swatch for the chosen day, so the same roof appears again and again under a different colour.</p>
+  </div></div>
+  <div class="stage">
+    <div class="controls"><input type="range" id="day4" min="0" max="138" value="14"><span class="date" id="date4"></span></div>
+    <div class="fpgrid" id="fp4"></div>
+  </div>
+  <p class="note"><b>Draws on</b> Byron Kim's Sunday Paintings and Sugimoto's Seascapes. The mask is computed from pixel variance, so it is only as good as the person's steadiness; it works best for the long, steady runs. <b>Build</b> as a set of silkscreens, one plate per person, the sky printed as a flat colour that changes per edition.</p>
+</section>
+
+<section class="proto" id="p5">
+  <div class="proto-head"><div class="num">5</div><div>
+    <h2>The 4 pm choir</h2>
+    <p>A single day read down the clock. Each person sits at the minute they chose, from Ishan before noon to Rizwan at six. Move the day and the skies change while the positions stay fixed. People who did not shoot that day fall silent. Press Listen and each day is played as a sweep down the clock: one beep per person at their minute, low before noon and rising to six, or flat if you bring the pitch range down to nothing. People are grouped in half-hour bands so everyone fits on one screen; the sound still uses their exact minute.</p>
+  </div></div>
+  <div class="stage">
+    <div class="controls"><button id="play5">Listen</button><input type="range" id="day5" min="0" max="138" value="10"><span class="date" id="date5"></span><span class="count" id="count5"></span><label class="speed">speed <input type="range" id="speed5" min="3" max="30" value="15" style="width:110px;min-width:0;flex:none"> <span id="speedv5">1.5 s/day</span></label></div>
+    <div class="controls" id="ctl5b"></div>
+    <div class="choir" id="choir5"></div>
+  </div>
+  <p class="note"><b>Draws on</b> Jan Dibbets' Shortest Day and the Reuters Delhi window. <b>Build</b> as a vertical web piece or a tall print, one per day, with the clock as the spine.</p>
+</section>
+
+<section class="proto" id="p6">
+  <div class="proto-head"><div class="num">6</div><div>
+    <h2>Ribbons</h2>
+    <p>Each person is a ribbon hung from a rod. Where it hangs from is their clock time. Its length is the number of days they showed up. Each slice is the actual sky band from that day's photo; a missed day is a thread.</p>
+  </div></div>
+  <div class="stage">
+    <div class="rod"></div>
+    <div class="ribbons" id="rib6"></div>
+  </div>
+  <p class="note"><b>Draws on</b> Stefanie Posavec's Air Transformed. <b>Build</b> as dye-sublimation prints on fabric, hung from a single rod at heights set by clock time; the longest ribbon (Samar, 127 days) would reach the floor.</p>
+</section>
+
+<section class="proto" id="p7">
+  <div class="proto-head"><div class="num">7</div><div>
+    <h2>A map that fills and empties</h2>
+    <p>Each city is a point coloured by the average sky of everyone who shot there that day. A city with nobody shooting goes hollow. Scrub the days and watch the map thin out from the south upward.</p>
+  </div></div>
+  <div class="stage">
+    <div class="controls"><input type="range" id="day7" min="0" max="138" value="8"><span class="date" id="date7"></span><span class="count" id="count7"></span></div>
+    <div class="map"><svg id="map7" viewBox="0 0 640 620" aria-label="Rough map of India with participant cities"></svg><div class="legend" id="leg7"></div></div>
+  </div>
+  <p class="note"><b>Draws on</b> your own 2020 note about map navigation, and Eri King's Collective Sky. The outline is a rough hand-drawn polygon, to be replaced with proper geometry. Rizwan and Saranya have no city on the sheet and are not placed.</p>
+</section>
+
+<section class="proto" id="p8">
+  <div class="proto-head"><div class="num">8</div><div>
+    <h2>What the sky said, what the instruments said</h2>
+    <p>Delhi, Ghaziabad and Rewari together: a daily blueness index computed from the photographs, plotted against the official daily air-quality record. The photograph line is real. The instrument line is an empty slot because no archived 2020 station data was reachable from here; the CPCB daily bulletins for those dates would fill it. Two press anchors are marked.</p>
+  </div></div>
+  <div class="stage">
+    <div class="legend8"><span><i></i>Sky blueness from photos (Delhi NCR, daily mean)</span><span><i class="s"></i>CPCB daily AQI, to be filled</span></div>
+    <div class="chart" id="chart8"></div>
+  </div>
+  <p class="note"><b>Blueness</b> is the blue channel minus the red channel of the sky swatch, so haze and cloud pull it down and clear blue pushes it up. <b>Anchors</b>: NPR reported Delhi's AQI around 93 on 10 April 2020 against a March 2019 average of 161; NASA reported aerosol levels over north India at a 20-year low in the week of 5 April. <b>Draws on</b> Zou Yi, who posts each photo with the day's AQI.</p>
+</section>
+
+<section class="proto" id="p9">
+  <div class="proto-head"><div class="num">9</div><div>
+    <h2>Sky tunes</h2>
+    <p>Every sky swatch sits somewhere on one continuum, from hazy white through grey to clear blue, and that continuum is a pitch. A person's run becomes their tune: one note per day, silence where they missed. Pick people to play together and change the selection while it runs. A missed day does not go silent: the last note is held and fades a little each day until the person returns, or dies away if they don't.</p>
+  </div></div>
+  <div class="stage">
+    <div class="eyebrow">The scale: real swatches from the archive, ordered by blueness, with the note each one plays</div>
+    <div class="scale9" id="scale9"></div>
+    <div class="controls" style="margin-top:16px"><button id="play9">Play</button><input type="range" id="day9" min="0" max="138" value="0"><span class="date" id="date9"></span><span class="count" id="count9"></span><label class="speed">speed <input type="range" id="speed9" min="1" max="12" value="3" style="width:110px;min-width:0;flex:none"> <span id="speedv9">3 days/s</span></label><label class="speed" style="margin-left:0"><input type="checkbox" id="snap9" checked> snap to scale</label></div>
+    <div class="controls" id="ctl9b"></div>
+    <div class="att tunes" id="tunes9"></div>
+  </div>
+  <p class="note"><b>Blueness</b> is the blue channel minus the red channel of the sky swatch, centred on G4. The pitch range slider sets how far blueness spreads the notes, from none (every day the same note, only the rhythm of showing up remains) to four octaves. With snap on, notes land on a pentatonic scale so overlapping people stay consonant; off, the pitch is continuous. Each person is panned left or right by their city's longitude, so Bombay sits left and Shillong right. Click a row to add or remove that person.</p>
+</section>
+
+<section class="proto" id="p10">
+  <div class="proto-head"><div class="num">10</div><div>
+    <h2>Same clock, different sun</h2>
+    <p>The first location experiment. Five o'clock in Shillong is not five o'clock in Bombay: the sun is lower in the east and the sky already warming. Here each photo is placed by the sun's elevation at the moment it was taken, computed from the date, the clock time and the city's coordinates, instead of by date. Much of the colour difference between people is the sun, not the air.</p>
+  </div></div>
+  <div class="stage">
+    <div class="att sun" id="sun10"></div>
+  </div>
+  <p class="note"><b>Elevation</b> is the sun's angle above the horizon in degrees, from a standard solar-position formula using Indian Standard Time and each city's latitude and longitude; accuracy is about a degree. People with no city on the sheet are left out. <b>Next location experiments</b> this opens up: order the sheet by latitude (already on prototype 1), mark each city's 2020 monsoon onset on its row, compare people in the same city on the same day, and pan or place sound by longitude.</p>
+</section>
+
+<section class="proto" id="p11">
+  <div class="proto-head"><div class="num">11</div><div>
+    <h2>Each person's sky</h2>
+    <p>No counts, no ranking. Every run fills the same width, so a week and four months sit as equals, and what you see is the colour of the sky that person kept. Ordered from the bluest sky to the warmest. Run your mouse along a band to lift that day out with the lens. The line under each name is written from the run itself: what its sky was mostly like, its bluest and greyest days, and the habit of the person behind it.</p>
+  </div></div>
+  <div class="stage journeys" id="jour11"></div>
+  <p class="note"><b>Draws on</b> Byron Kim's Sunday Paintings and Sugimoto's Seascapes, where the frame is fixed and only the weather and light speak. Missed days are the thin dark seams. Time-of-day habit is measured against the minute each person chose.</p>
+</section>
+
+<section class="proto" id="p12">
+  <div class="proto-head"><div class="num">12</div><div>
+    <h2>The day it was</h2>
+    <p>One person, one photograph at full size, and what that day was in the country under the sky. Step through with the arrows or the keyboard. Under each frame: the new cases reported that day in the person's state and, from late April, their district; the lockdown phase; and one line from the day's national record. The local headline is the Times of India city page for that day, recovered from the Internet Archive.</p>
+  </div></div>
+  <div class="stage day12" id="day12" tabindex="0">
+    <div class="controls"><label class="speed" style="margin-left:0">person <select id="who12"></select></label><button id="prev12">\u2190 previous day</button><button id="next12">next day \u2192</button><span class="count" id="pos12"></span></div>
+    <div class="bigframe" id="frame12"></div>
+    <div class="daycap">
+      <div class="dc-left"><div class="dc-date" id="date12"></div><div class="dc-who" id="whom12"></div><div class="dc-phase" id="phase12"></div></div>
+      <div class="dc-right">
+        <p class="dc-cases" id="cases12"></p>
+        <p class="dc-line" id="line12"></p>
+        <p class="dc-head" id="head12"></p>
+      </div>
+    </div>
+  </div>
+  <p class="note"><b>Cases</b> are daily new confirmed counts from the covid19india.org archive, by state, and by district from 26 April 2020 when district reporting begins. <b>The line of the day</b> is the opening sentence of that date's entry in the Wikipedia timeline of the pandemic in India, unedited, so its register varies; it is a placeholder for a chosen headline. <b>Local headlines</b> come from the Times of India city section for each city (Gurgaon stands in for Rewari, Coimbatore for Erode, Kozhikode for Calicut), as archived by the Internet Archive on that date. The main line is the day's story whose title mentions the virus or the lockdown; the small lines are the other stories archived that day. Each links to the archived page. Frames here are 640 by 480 crops of the originals.</p>
+</section>
+
+<section class="proto" id="p13">
+  <div class="proto-head"><div class="num">13</div><div>
+    <h2>Your sky, played back</h2>
+    <p>The archive returned to the person who made it. One tune brought to the fore: their run, one note per day, missed days held and fading. Play it through, slow it down, change the instrument, or just run your hand along the sky and hear each day as you pass over it. This is the page each participant would get, six years on.</p>
+  </div></div>
+  <div class="stage yours13" id="yours13">
+    <div class="controls"><label class="speed" style="margin-left:0">for <select id="who13"></select></label><button id="play13">Play</button><label class="speed">speed <input type="range" id="speed13" min="1" max="12" value="2" style="width:110px;min-width:0;flex:none"> <span id="speedv13">2 days/s</span></label></div>
+    <div class="controls" id="ctl13b"></div>
+    <div class="cover13"><div class="jband" id="band13"></div><div class="head13" id="head13"></div></div>
+    <div class="jcap" style="margin-top:14px"><h3 id="name13"></h3><p id="desc13"></p></div>
+  </div>
+  <p class="note"><b>Play is the way in.</b> Hovering plays the day under the cursor, so a person can find their bluest day by ear. The band is their run at full width; the thin dark seams are the days they missed, and you hear those as the note fading. As a gift this would be a page per person with a link sent to them, cover image and all.</p>
+</section>
+
+<section class="proto" id="p14">
+  <div class="proto-head"><div class="num">14</div><div>
+    <h2>What moved</h2>
+    <p>Below the sky, in the part of the frame that was supposed to stay still, something usually didn't. For each long run, the frame's textured region is searched for the two places that changed most across the days, and those patches are laid out in order. A car that left, laundry, a tree filling in, a floor added to a building. Small proofs that life carried on.</p>
+  </div></div>
+  <div class="stage moved14" id="moved14"></div>
+  <p class="note"><b>Method.</b> Frames are averaged; the sky is excluded by keeping only textured regions of the average; the day-to-day variance of what remains is smoothed and its two strongest peaks become the patches, 112 pixels square on the 640-wide frame. Runs shorter than 15 days are skipped. A hand-held phone never returns to exactly the same spot, so some patches show the frame shifting rather than the world changing; those are honest too. Hover a patch for its date.</p>
+</section>
+
+<section class="proto" id="p15">
+  <div class="proto-head"><div class="num">15</div><div>
+    <h2>The air at that hour</h2>
+    <p>The question the project began with, asked properly for the first time. For every photo, the official air-quality reading at the hour it was taken, from the monitoring station or city network nearest to the person. Above each row, the sky the person saw; below it, the air the instruments measured. Then all of it on one chart: how blue the sky looked against how clean the air was.</p>
+  </div></div>
+  <div class="stage">
+    <div class="att air" id="air15"></div>
+    <div class="eyebrow" style="margin-top:30px">Every photo with a reading: sky blueness against AQI at that hour</div>
+    <div class="chart" id="scatter15"></div>
+    <div class="legend15" id="leg15"></div>
+  </div>
+  <p class="note" id="note15"></p>
+</section>
+
+<section class="proto" id="p16">
+  <div class="proto-head"><div class="num">16</div><div>
+    <h2>Cleanest air, dirtiest air</h2>
+    <p>For each person, two photographs from their own run: the day the instruments read cleanest and the day they read worst. Nothing else. If the air is visible in the sky, it should be visible here, in the pair.</p>
+  </div></div>
+  <div class="stage pairs16" id="pairs16"></div>
+  <p class="note"><b>Readings</b> are the AQI at the hour of each photo, as on the previous page, so the same coverage limits apply and people with no reading are not shown. <b>Blueness</b> is printed under each frame so you can check the sky against the number without trusting your eye. Frames are 640 by 480 crops of the originals.</p>
+</section>
+
+<section class="refs" id="refs">
+  <div class="eyebrow">References</div>
+  <h2 style="font-size:36px;margin-top:8px">The work these draw on</h2>
+  <p class="lede" style="margin-top:8px">Every project named in the ideas, with a link. Grouped the way the research was done.</p>
+  <div id="reflists"></div>
+</section>
+</div>
+<div id="tip"></div>
+<div id="lens"><span></span></div>
+
+<script src="data.js"></script>
+<script src="events.js"></script>
+<script src="moved.js"></script>
+<script src="aqi.js"></script>
+<script>
+(function(){
+const S=window.SKY, P=S.participants, N=S.ndays, START=new Date(S.start+"T00:00:00");
+const byP={}; S.photos.forEach(ph=>{(byP[ph.p]=byP[ph.p]||{})[ph.d]=ph;});
+const tmin=t=>{const [h,m]=t.split(":").map(Number);return h*60+m;};
+const sorted=[...P].sort((a,b)=>tmin(a.time)-tmin(b.time)||b.n-a.n);
+const dstr=d=>{const x=new Date(START);x.setDate(x.getDate()+d);return x.toLocaleDateString("en-GB",{day:"numeric",month:"short"});};
+const rgb=c=>`rgb(${c[0]},${c[1]},${c[2]})`;
+const monthStarts=[];for(let d=0;d<N;d++){const x=new Date(START);x.setDate(x.getDate()+d);if(x.getDate()===1)monthStarts.push([d,x.toLocaleDateString("en-GB",{month:"short"})]);}
+const label=p=>p.name+(p.area?", "+p.area:"")+(p.city?", "+p.city:"");
+
+// facts
+const nphotos=S.photos.length, ndays=new Set(S.photos.map(p=>p.d)).size;
+document.getElementById("facts").innerHTML=[[P.length,"people who sent photos"],[nphotos,"photographs with a date"],[ndays,"days with at least one photo"],["127","longest run, Samar in Ghaziabad"],["11:30 to 18:00","chosen clock times"]].map(([b,s])=>`<div class="fact"><b>${b}</b><span>${s}</span></div>`).join("");
+void(["Attendance sheet","Grid timelapse","Averaged sky","Fingerprint","4 pm choir","Ribbons","Map","Sky vs instruments","Sky tunes","Sun angle","Each person\u2019s sky","The day it was","Your sky, played back","What moved","The air at that hour","Cleanest air, dirtiest air"].map((t,i)=>`<a href="#p${i+1}">${i+1} ${t}</a>`).join("")+`<a href="#refs">References</a>`);
+
+// tooltip
+const tip=document.getElementById("tip");
+function showTip(e,ph,p){tip.innerHTML=`<img src="${ph.i}" alt="">${p.name}<br>${dstr(ph.d)} 2020, ${ph.t}${p.city?"<br>"+(p.area?p.area+", ":"")+p.city:""}`;tip.style.display="block";moveTip(e);}
+function moveTip(e){const w=220,h=200;let x=e.clientX+14,y=e.clientY+14;if(x+w>innerWidth)x=e.clientX-w-14;if(y+h>innerHeight)y=e.clientY-h-14;tip.style.left=x+"px";tip.style.top=y+"px";}
+function hideTip(){tip.style.display="none";}
+
+
+// shared synth: one note, several instruments. freq Hz, at = ctx time, vel 0..1, pan -1..1
+const INST={sine:"Sine",triangle:"Triangle",bell:"Bell",pluck:"Pluck",organ:"Organ",flute:"Flute"};
+function playNote(ctx,at,freq,inst,vel,pan){
+  const out=ctx.createGain(); out.gain.value=vel; let last=out;
+  if(pan!=null&&ctx.createStereoPanner){const pn=ctx.createStereoPanner();pn.pan.value=Math.max(-1,Math.min(1,pan));out.connect(pn);last=pn;}
+  last.connect(ctx.destination);
+  const env=(g,a,d,peak)=>{g.gain.setValueAtTime(0,at);g.gain.linearRampToValueAtTime(peak,at+a);g.gain.exponentialRampToValueAtTime(.0008,at+a+d);};
+  const osc=(type,f,a,d,peak)=>{const o=ctx.createOscillator(),g=ctx.createGain();o.type=type;o.frequency.value=f;env(g,a,d,peak);o.connect(g).connect(out);o.start(at);o.stop(at+a+d+.05);return o;};
+  switch(inst){
+    case "triangle": osc("triangle",freq,.015,.35,.9); break;
+    case "bell": osc("sine",freq,.005,1.1,.7); osc("sine",freq*2.76,.005,.45,.25); osc("sine",freq*5.4,.003,.18,.08); break;
+    case "pluck": {const o=ctx.createOscillator(),f=ctx.createBiquadFilter(),g=ctx.createGain();o.type="sawtooth";o.frequency.value=freq;f.type="lowpass";f.frequency.setValueAtTime(freq*6,at);f.frequency.exponentialRampToValueAtTime(freq*1.2,at+.3);f.Q.value=2;env(g,.004,.5,.5);o.connect(f).connect(g).connect(out);o.start(at);o.stop(at+.6);} break;
+    case "organ": osc("sine",freq,.03,.5,.5); osc("sine",freq*2,.03,.5,.25); osc("sine",freq*3,.03,.5,.12); break;
+    case "flute": {const o=osc("sine",freq,.06,.5,.8); const v=ctx.createOscillator(),vg=ctx.createGain();v.frequency.value=5.5;vg.gain.value=freq*.006;v.connect(vg).connect(o.frequency);v.start(at);v.stop(at+.7);
+      const n=ctx.createBufferSource(),buf=ctx.createBuffer(1,ctx.sampleRate*.2,ctx.sampleRate),d=buf.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=(Math.random()*2-1)*.3;n.buffer=buf;const bf=ctx.createBiquadFilter();bf.type="bandpass";bf.frequency.value=freq*2;bf.Q.value=6;const ng=ctx.createGain();env(ng,.02,.15,.12);n.connect(bf).connect(ng).connect(out);n.start(at);} break;
+    default: osc("sine",freq,.012,.3,.9);
+  }
+}
+const instSelect=id=>`<label class="speed" style="margin-left:0">instrument <select id="${id}">${Object.entries(INST).map(([k,v])=>`<option value="${k}">${v}</option>`).join("")}</select></label>`;
+const rangeSlider=(id,val)=>`<label class="speed" style="margin-left:0">pitch range <input type="range" id="${id}" min="0" max="48" value="${val}" style="width:110px;min-width:0;flex:none"> <span id="${id}v">${val===0?"none":val+" semitones"}</span></label>`;
+
+// 1 attendance
+(function(){
+  const el=document.getElementById("att");
+  const orders={time:sorted, lat:[...P].sort((a,b)=>(b.lat??-99)-(a.lat??-99)||tmin(a.time)-tmin(b.time)), n:[...P].sort((a,b)=>b.n-a.n)};
+  function build(list){ let h="";
+    h+=`<div></div><div class="axis">${monthStarts.map(([d,m])=>`<span style="left:${d/N*100}%">${m}</span>`).join("")}</div>`;
+    list.forEach(p=>{
+      h+=`<div class="lab"><span class="t">${p.time}</span><span class="n">${p.name} <small>${p.area?p.area+", ":""}${p.city||""}</small></span><span class="k">${p.n}</span></div><div class="row" data-p="${p.id}">`;
+      h+=monthStarts.map(([d])=>`<i class="tick" style="left:${d/N*100}%"></i>`).join("");
+      Object.values(byP[p.id]).forEach(ph=>{h+=`<span class="cell" data-d="${ph.d}" style="left:${ph.d/N*100}%;width:${100/N}%;background:${rgb(ph.c)}"></span>`;});
+      h+=`</div>`;});
+    el.innerHTML=h; }
+  build(sorted);
+  document.querySelectorAll('#p1 .opt').forEach(b=>b.onclick=()=>{document.querySelectorAll('#p1 .opt').forEach(x=>x.classList.remove("on"));b.classList.add("on");build(orders[b.dataset.o]);});
+  el.addEventListener("mousemove",e=>{const c=e.target.closest(".cell");if(!c)return hideTip();const pid=+c.parentElement.dataset.p;showTip(e,byP[pid][+c.dataset.d],P[pid]);});
+  el.addEventListener("mouseleave",hideTip);
+})();
+
+// 2 grid timelapse
+(function(){
+  const grid=document.getElementById("grid2"), r=document.getElementById("day2"), dateEl=document.getElementById("date2"), cnt=document.getElementById("count2"), btn=document.getElementById("play2");
+  grid.innerHTML=sorted.map(p=>`<div class="cellp" data-p="${p.id}"><img alt=""><div class="cap">${p.name}<br>${p.city||""} ${p.time}</div></div>`).join("");
+  const cells=[...grid.children];
+  function render(d){
+    dateEl.textContent=dstr(d)+" 2020"; let k=0;
+    cells.forEach(c=>{const p=P[+c.dataset.p], ph=byP[p.id][d], img=c.querySelector("img");
+      c.className="cellp";
+      if(ph){img.src=ph.i;img.style.visibility="visible";k++;}
+      else{ if(d<p.start)c.classList.add("notyet"); else if(d>p.end){c.classList.add("done");} else c.classList.add("missed"); if(d>p.end&&byP[p.id][p.end]){img.src=byP[p.id][p.end].i;img.style.visibility="visible";img.style.filter="grayscale(1) brightness(.45)";} else {img.style.visibility="hidden";} }
+      if(ph)img.style.filter="";
+    });
+    cnt.textContent=k+" of "+P.length+" showed up";
+  }
+  let timer=null; const sp=document.getElementById("speed2"), spv=document.getElementById("speedv2");
+  const fps=()=>+sp.value;
+  function tick(){let d=+r.value+1;if(d>138)d=0;r.value=d;render(d);}
+  function start(){btn.textContent="Pause";timer=setInterval(tick,1000/fps());}
+  function stop(){clearInterval(timer);timer=null;btn.textContent="Play";}
+  btn.onclick=()=>{ if(timer){stop();return;} if(+r.value>=138)r.value=0; start(); };
+  sp.oninput=()=>{spv.textContent=fps()+" days/s"; if(timer){clearInterval(timer);timer=setInterval(tick,1000/fps());}};
+  // shuffle: mix the tiles into a new order; the cells keep their state, only their places change
+  document.getElementById("shuffle2").onclick=()=>{const order=[...cells];for(let i=order.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[order[i],order[j]]=[order[j],order[i]];}order.forEach(c=>grid.appendChild(c));};
+  r.oninput=()=>render(+r.value); render(0);
+})();
+
+// 3 averages
+(function(){
+  document.getElementById("avg3").innerHTML=[...P].sort((a,b)=>b.n-a.n).map(p=>`<figure><img src="${p.avg}" alt="Average of ${p.name}'s frames"><figcaption><b>${p.name}</b>${p.area?p.area+", ":""}${p.city||"city unknown"}\u00a0\u00b7 ${p.time}<br>${p.n} day${p.n>1?"s":""}, ${dstr(p.start)} to ${dstr(p.end)}</figcaption></figure>`).join("");
+  const days=Object.keys(S.dayavg).map(Number).filter(d=>S.dayavg[d].n>=3).sort((a,b)=>a-b);
+  document.getElementById("days3").innerHTML=days.map(d=>`<div class="d"><img src="${S.dayavg[d].i}" alt=""><small>${dstr(d)}\u00a0\u00b7 ${S.dayavg[d].n}</small></div>`).join("");
+})();
+
+// 4 fingerprint
+(function(){
+  const el=document.getElementById("fp4"), r=document.getElementById("day4"), dateEl=document.getElementById("date4");
+  const ps=P.filter(p=>p.mask&&p.n>=8).sort((a,b)=>b.n-a.n);
+  el.innerHTML=ps.map(p=>`<div class="fp" data-p="${p.id}"><img src="${p.mask}" alt="Fixed frame of ${p.name}"><div class="cap">${p.name}, ${p.city||""}</div></div>`).join("");
+  function render(d){dateEl.textContent=dstr(d)+" 2020";[...el.children].forEach(c=>{const p=P[+c.dataset.p], ph=byP[p.id][d];
+    if(ph){c.style.background=rgb(ph.c);c.style.opacity=1;} else {c.style.background="var(--sunk)";c.style.opacity=.6;}});}
+  r.oninput=()=>render(+r.value); render(+r.value);
+})();
+
+// 5 choir
+(function(){
+  const el=document.getElementById("choir5"), r=document.getElementById("day5"), dateEl=document.getElementById("date5"), cnt=document.getElementById("count5"), btn=document.getElementById("play5");
+  const T0=11*60, T1=18*60+30, NB=(T1-T0)/30;
+  const bands=[];for(let i=0;i<NB;i++)bands.push([]);
+  sorted.forEach(p=>bands[Math.min(NB-1,Math.floor((tmin(p.time)-T0)/30))].push(p));
+  el.innerHTML=bands.map((ps,i)=>{const t=T0+i*30,lab=`${Math.floor(t/60)}:${t%60?t%60:"00"}`;
+    return `<div class="band ${ps.length?"":"empty"}" data-b="${i}"><div class="bl">${lab}</div><div class="bc">${ps.map(p=>`<div class="voice" data-p="${p.id}"><img alt=""><div class="who">${p.name}<small>${p.city||""}\u00a0\u00b7 ${p.time}</small></div></div>`).join("")}</div></div>`;}).join("");
+  const voices=[...el.querySelectorAll(".voice")], bandEls=[...el.querySelectorAll(".band")];
+  function render(d){dateEl.textContent=dstr(d)+" 2020";let k=0;voices.forEach(v=>{const p=P[+v.dataset.p],ph=byP[p.id][d];v.classList.toggle("off",!ph);v.classList.remove("beep");if(ph){v.querySelector("img").src=ph.i;k++;}});cnt.textContent=k+" voices";}
+  render(+r.value);
+
+  // sound: one day = one sweep down the clock; each person who shot beeps at their minute; pitch rises with time of day, two octaves from 220 Hz
+  const sp=document.getElementById("speed5"), spv=document.getElementById("speedv5");
+  const SWEEP=()=>sp.value*100, GAP=()=>SWEEP()*0.25;
+  let ctx=null, running=false, timers=[];
+  document.getElementById("ctl5b").innerHTML=instSelect("inst5")+rangeSlider("range5",24);
+  const inst5=document.getElementById("inst5"), rng5=document.getElementById("range5"), rng5v=document.getElementById("range5v");
+  rng5.oninput=()=>{rng5v.textContent=rng5.value==0?"none":rng5.value+" semitones";};
+  const freq=t=>440*Math.pow(2,(((t-T0)/(T1-T0))-0.5)*rng5.value/12);
+  function beep(at,f){playNote(ctx,at,f,inst5.value,.28,null);}
+  function clearTimers(){timers.forEach(clearTimeout);timers=[];voices.forEach(v=>v.classList.remove("beep"));bandEls.forEach(b=>b.classList.remove("now"));}
+  function playDay(d,loop){
+    clearTimers(); r.value=d; render(d);
+    const S=SWEEP(), now=ctx.currentTime;
+    for(let i=0;i<NB;i++){timers.push(setTimeout(()=>{bandEls.forEach(b=>b.classList.remove("now"));bandEls[i].classList.add("now");},i/NB*S));}
+    timers.push(setTimeout(()=>bandEls.forEach(b=>b.classList.remove("now")),S));
+    voices.forEach(v=>{const p=P[+v.dataset.p];if(!byP[p.id][d])return;const t=tmin(p.time),off=(t-T0)/(T1-T0);
+      beep(now+off*S/1000,freq(t));
+      timers.push(setTimeout(()=>{v.classList.add("beep");setTimeout(()=>v.classList.remove("beep"),180);},off*S));});
+    if(loop) timers.push(setTimeout(()=>playDay(d<138?d+1:0,true),S+GAP()));
+  }
+  function stop(){running=false;clearTimers();btn.textContent="Listen";}
+  function ensureCtx(){ctx=ctx||new (window.AudioContext||window.webkitAudioContext)();ctx.resume();}
+  btn.onclick=()=>{ if(running){stop();return;} ensureCtx(); running=true; btn.textContent="Stop"; playDay(+r.value>=138?0:+r.value,true); };
+  r.oninput=()=>{ const d=+r.value; if(running){playDay(d,true);} else { render(d); } };
+  r.onchange=()=>{ if(!running&&ctx){ playDay(+r.value,false); } };
+  sp.oninput=()=>{ spv.textContent=(sp.value/10).toFixed(1)+" s/day"; };
+})();
+
+// 6 ribbons
+(function(){
+  const el=document.getElementById("rib6"); const T0=11*60, T1=18*60+30;
+  el.innerHTML=sorted.map(p=>{const hang=Math.round((tmin(p.time)-T0)/(T1-T0)*120);
+    let s=`<div class="ribbon"><div class="hang" style="height:${hang}px"></div>`;
+    for(let d=p.start;d<=p.end;d++){const ph=byP[p.id][d]; s+=ph?`<div class="slice" style="background-image:url(${ph.i})"></div>`:`<div class="slice gap"></div>`;}
+    s+=`<div class="tag">${p.name}\u00a0\u00b7 ${p.time}\u00a0\u00b7 ${p.n}d</div></div>`; return s;}).join("");
+})();
+
+// 7 map
+(function(){
+  const svg=document.getElementById("map7"), r=document.getElementById("day7"), dateEl=document.getElementById("date7"), cnt=document.getElementById("count7"), leg=document.getElementById("leg7");
+  const k=19.5, px=lon=>(lon-67)*k, py=lat=>(37.5-lat)*k;
+  const main=[[68.5,23.5],[70.0,22.6],[70.5,20.9],[72.7,21.1],[72.8,19.1],[73.3,17.0],[74.4,14.5],[74.9,12.8],[75.7,11.3],[76.3,9.5],[77.4,8.1],[78.2,8.8],[79.8,10.3],[80.3,12.5],[80.2,14.5],[81.5,16.2],[82.3,17.0],[84.8,19.2],[86.5,20.2],[87.5,21.6],[88.8,22.0],[88.3,24.5],[88.1,26.5],[85.0,27.5],[80.5,29.0],[79.0,31.0],[78.5,32.5],[77.0,34.5],[76.0,35.5],[74.0,36.5],[73.5,34.5],[74.5,32.5],[73.8,31.5],[74.6,29.5],[72.5,28.0],[71.0,27.0],[70.0,25.5],[71.0,24.0]];
+  const ne=[[88.1,26.5],[89.8,26.8],[92.0,26.9],[95.0,27.8],[97.3,28.3],[96.0,29.3],[93.5,28.7],[92.2,27.5],[91.6,25.2],[92.5,24.0],[93.4,22.4],[92.3,22.0],[92.0,24.5],[90.0,25.2],[89.8,26.0]];
+  const poly=pts=>`<path class="land" d="M${pts.map(([lo,la])=>px(lo)+","+py(la)).join("L")}Z"/>`;
+  const cities={}; P.forEach(p=>{if(p.lat!=null){(cities[p.city]=cities[p.city]||{lat:p.lat,lon:p.lon,ps:[]}).ps.push(p);}});
+  const names=Object.keys(cities).sort((a,b)=>cities[b].lat-cities[a].lat);
+  svg.innerHTML=poly(main)+poly(ne)+names.map(c=>{const o=cities[c];const dx=(c==="Ghaziabad"||c==="Erode"||c==="Chennai")?12:-12, anchor=dx>0?"start":"end";return `<g class="city" data-c="${c}"><circle cx="${px(o.lon)}" cy="${py(o.lat)}" r="9" stroke="var(--ink)" stroke-width="1.2" fill="none"/><text x="${px(o.lon)+dx}" y="${py(o.lat)+4}" text-anchor="${anchor}">${c}</text></g>`;}).join("");
+  function render(d){dateEl.textContent=dstr(d)+" 2020";let k=0,rows="";
+    names.forEach(c=>{const o=cities[c];const shots=o.ps.map(p=>byP[p.id][d]).filter(Boolean);const g=svg.querySelector(`[data-c="${c}"] circle`);
+      if(shots.length){const m=[0,1,2].map(i=>Math.round(shots.reduce((s,ph)=>s+ph.c[i],0)/shots.length));g.setAttribute("fill",rgb(m));g.setAttribute("r",8+shots.length*2);k+=shots.length;rows+=`<div class="r"><span><i style="background:${rgb(m)}"></i>${c}</span><span>${shots.length}</span></div>`;}
+      else{g.setAttribute("fill","none");g.setAttribute("r",6);rows+=`<div class="r" style="color:var(--muted)"><span><i></i>${c}</span><span>0</span></div>`;}});
+    cnt.textContent=k+" photos"; leg.innerHTML=rows;}
+  r.oninput=()=>render(+r.value); render(+r.value);
+})();
+
+// 8 chart
+(function(){
+  const ncr=P.filter(p=>["Delhi","Ghaziabad","Rewari"].includes(p.city)).map(p=>p.id);
+  const series=[];for(let d=0;d<N;d++){const v=ncr.map(id=>byP[id][d]).filter(Boolean).map(ph=>ph.c[2]-ph.c[0]);if(v.length)series.push([d,v.reduce((a,b)=>a+b,0)/v.length,v.length]);}
+  const W=1060,H=300,L=44,R=16,T=18,B=34, ymin=-20,ymax=80;
+  const x=d=>L+d/(N-1)*(W-L-R), y=v=>T+(ymax-v)/(ymax-ymin)*(H-T-B);
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Daily sky blueness, Delhi NCR"><g class="grid">`;
+  for(let v=ymin;v<=ymax;v+=20)s+=`<line x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}"/><text x="${L-8}" y="${y(v)+4}" text-anchor="end">${v}</text>`;
+  s+=`</g><line class="ax" x1="${L}" x2="${W-R}" y1="${y(ymin)}" y2="${y(ymin)}"/>`;
+  monthStarts.forEach(([d,m])=>{s+=`<line class="ax" x1="${x(d)}" x2="${x(d)}" y1="${y(ymin)}" y2="${y(ymin)+5}"/><text x="${x(d)+4}" y="${H-14}">${m}</text>`;});
+  s+=`<path class="sky" d="${series.map(([d,v],i)=>(i?"L":"M")+x(d)+","+y(v)).join("")}"/>`;
+  s+=`<g class="dots">${series.filter(([d,v,n])=>n>=2).map(([d,v])=>`<circle cx="${x(d)}" cy="${y(v)}" r="2.5"><title>${dstr(d)}: blueness ${v.toFixed(0)}</title></circle>`).join("")}</g>`;
+  // instrument slot: dashed baseline sitting at the bottom band
+  s+=`<path class="slot" d="M${x(0)},${y(-10)}L${x(N-1)},${y(-10)}"/><text x="${x(N-1)}" y="${y(-10)-6}" text-anchor="end">CPCB daily AQI goes here</text>`;
+  const ann=[[16,"10 Apr: Delhi AQI ~93 (NPR)"],[11,"5 Apr: aerosols at 20-year low (NASA)"]];
+  s+=`<g class="ann">${ann.map(([d,t],i)=>`<line x1="${x(d)}" x2="${x(d)}" y1="${T}" y2="${y(ymin)}" stroke-dasharray="2 3"/><text x="${x(d)+5}" y="${T+12+i*14}">${t}</text>`).join("")}</g>`;
+  s+=`<text x="${L}" y="${T-6}" style="font-size:10.5px">blue minus red, 0 to 255</text></svg>`;
+  document.getElementById("chart8").innerHTML=s;
+})();
+
+// 9 sky tunes
+(function(){
+  const el=document.getElementById("tunes9"), r=document.getElementById("day9"), dateEl=document.getElementById("date9"), cnt=document.getElementById("count9"), btn=document.getElementById("play9"), sp=document.getElementById("speed9"), spv=document.getElementById("speedv9"), snap=document.getElementById("snap9");
+  const idx=c=>Math.max(0,Math.min(1,(c[2]-c[0]+10)/130));
+  const PENT=[-12,-10,-8,-5,-3,0,2,4,7,9,12,14,16,19,21,24,26,28,31,33,36];
+  document.getElementById("ctl9b").innerHTML=instSelect("inst9")+rangeSlider("range9",24)+`<button class="opt" id="all9">Select all</button><button class="opt" id="none9">Deselect all</button><label class="speed" style="margin-left:0"><input type="checkbox" id="hold9" checked> hold and fade through missed days</label>`;
+  const inst9=document.getElementById("inst9"), rng9=document.getElementById("range9"), rng9v=document.getElementById("range9v");
+  rng9.oninput=()=>{rng9v.textContent=rng9.value==0?"none":rng9.value+" semitones";};
+  // pitch: centred on G4; range spreads blueness across 0 to 48 semitones; snap lands on a pentatonic scale
+  const freqOf=c=>{let st=12+(idx(c)-0.5)*rng9.value; if(snap.checked){st=PENT.reduce((a,b)=>Math.abs(b-st)<Math.abs(a-st)?b:a);} return 196*Math.pow(2,st/12);};
+  const NAMES={"-12":"G2","-10":"A2","-8":"B2","-5":"D3","-3":"E3","0":"G3","2":"A3","4":"B3","7":"D4","9":"E4","12":"G4","14":"A4","16":"B4","19":"D5","21":"E5","24":"G5","26":"A5","28":"B5","31":"D6","33":"E6","36":"G6"};
+  // scale strip: 24 bins of real swatches
+  const all=[...S.photos].sort((a,b)=>idx(a.c)-idx(b.c)); const bins=24;
+  document.getElementById("scale9").innerHTML=Array.from({length:bins},(_,i)=>{const ph=all[Math.floor((i+.5)/bins*all.length)];const st=Math.round(i/(bins-1)*24);const nm=NAMES[String(PENT.reduce((a,b)=>Math.abs(b-st)<Math.abs(a-st)?b:a))];return `<div class="sw"><i style="height:${20+i/(bins-1)*40}px;background:${rgb(ph.c)}"></i><small>${i%3==0?nm:""}</small></div>`;}).join("");
+  // rows
+  const list=[...P].sort((a,b)=>b.n-a.n); const sel=new Set(list.slice(0,3).map(p=>p.id));
+  let h=`<div></div><div class="axis">${monthStarts.map(([d,m])=>`<span style="left:${d/N*100}%">${m}</span>`).join("")}</div>`;
+  list.forEach(p=>{h+=`<div class="lab ${sel.has(p.id)?"sel":""}" data-p="${p.id}"><span class="t">${p.time}</span><span class="n">${p.name} <small>${p.city||""}</small></span><span class="k">${p.n}</span></div><div class="row ${sel.has(p.id)?"sel":""}" data-p="${p.id}">`;
+    h+=monthStarts.map(([d])=>`<i class="tick" style="left:${d/N*100}%"></i>`).join("");
+    Object.values(byP[p.id]).forEach(ph=>{h+=`<span class="cell" data-d="${ph.d}" style="left:${ph.d/N*100}%;width:${100/N}%;background:${rgb(ph.c)}"></span>`;});
+    h+=`</div>`;});
+  el.innerHTML=h+`<div class="head" id="head9" style="left:0"></div>`;
+  const head=document.getElementById("head9"); const labelW=()=>el.querySelector(".axis").offsetLeft;
+  el.addEventListener("click",e=>{const t=e.target.closest("[data-p]");if(!t)return;const id=+t.dataset.p;sel.has(id)?sel.delete(id):sel.add(id);el.querySelectorAll(`[data-p="${id}"]`).forEach(x=>x.classList.toggle("sel",sel.has(id)));cnt.textContent=sel.size+" selected";});
+  el.addEventListener("mousemove",e=>{const c=e.target.closest(".cell");if(!c)return hideTip();const pid=+c.parentElement.dataset.p;showTip(e,byP[pid][+c.dataset.d],P[pid]);});
+  el.addEventListener("mouseleave",hideTip);
+  let ctx=null,timer=null;
+  function note(ph,p,n,g){playNote(ctx,ctx.currentTime,freqOf(ph.c),inst9.value,(g==null?1:g)*.26/Math.sqrt(Math.max(1,n)),((p.lon??80)-80)/10);}
+  const DECAY=0.62, hold9=document.getElementById("hold9");
+  // a missed day holds the last note, fading by DECAY each day, until the person returns or the note dies away
+  function lastBefore(id,d){for(let k=d-1;k>=P[id].start;k--){if(byP[id][k])return [byP[id][k],d-k];}return null;}
+  function render(d){dateEl.textContent=dstr(d)+" 2020";const ax=el.querySelector(".axis");head.style.left=(ax.offsetLeft+ax.offsetWidth*d/N)+"px";el.querySelectorAll(".cell.on,.cell.hold").forEach(c=>{c.classList.remove("on","hold");c.style.opacity="";});
+    const playing=[];
+    [...sel].forEach(id=>{const ph=byP[id][d];
+      if(ph){playing.push([ph,P[id],1]);const c=el.querySelector(`.row[data-p="${id}"] .cell[data-d="${d}"]`);if(c)c.classList.add("on");return;}
+      if(!hold9.checked||d<=P[id].start)return;
+      const lb=lastBefore(id,d);if(!lb)return;const [lph,k]=lb,g=Math.pow(DECAY,k);if(g<.03)return;
+      playing.push([lph,P[id],g]);const c=el.querySelector(`.row[data-p="${id}"] .cell[data-d="${lph.d}"]`);if(c){c.classList.add("hold");c.style.opacity=(0.35+0.65*g).toFixed(2);}});
+    return playing;}
+  function step(){let d=+r.value;const playing=render(d);if(ctx)playing.forEach(([ph,p,g])=>note(ph,p,playing.length,g));r.value=d>=138?0:d+1;}
+  function start(){btn.textContent="Pause";timer=setInterval(step,1000/sp.value);}
+  function stop(){clearInterval(timer);timer=null;btn.textContent="Play";}
+  btn.onclick=()=>{if(timer){stop();return;}ctx=ctx||new (window.AudioContext||window.webkitAudioContext)();ctx.resume();if(+r.value>=138)r.value=0;start();};
+  sp.oninput=()=>{spv.textContent=sp.value+" days/s";if(timer){clearInterval(timer);timer=setInterval(step,1000/sp.value);}};
+  r.oninput=()=>{const playing=render(+r.value);if(ctx&&!timer)playing.forEach(([ph,p,g])=>note(ph,p,playing.length,g));};
+  function setAll(on){list.forEach(p=>{on?sel.add(p.id):sel.delete(p.id);});el.querySelectorAll("[data-p]").forEach(x=>x.classList.toggle("sel",on));cnt.textContent=sel.size+" selected";}
+  document.getElementById("all9").onclick=()=>setAll(true); document.getElementById("none9").onclick=()=>setAll(false);
+  window.addEventListener("resize",()=>render(+r.value));
+  cnt.textContent=sel.size+" selected"; render(0);
+})();
+
+// 10 sun angle
+(function(){
+  const el=document.getElementById("sun10");
+  const rad=Math.PI/180;
+  function elev(p,ph){ // solar elevation, degrees. IST = UTC+5:30, standard meridian 82.5 E
+    const n=ph.d+85; // 25 Mar is day 85 of 2020
+    const decl=23.45*Math.sin(2*Math.PI*(284+n)/365);
+    const B=2*Math.PI*(n-81)/364, E=9.87*Math.sin(2*B)-7.53*Math.cos(B)-1.5*Math.sin(B);
+    const clock=tmin(ph.t), solar=clock+4*(p.lon-82.5)+E, Hh=(solar/60-12)*15;
+    return Math.asin(Math.sin(p.lat*rad)*Math.sin(decl*rad)+Math.cos(p.lat*rad)*Math.cos(decl*rad)*Math.cos(Hh*rad))/rad;}
+  const X0=-2,X1=62, x=e=>(e-X0)/(X1-X0)*100;
+  const list=P.filter(p=>p.lat!=null).map(p=>{const es=Object.values(byP[p.id]).map(ph=>[ph,elev(p,ph)]);const med=[...es].sort((a,b)=>a[1]-b[1])[Math.floor(es.length/2)][1];return {p,es,med};}).sort((a,b)=>a.med-b.med);
+  let h=`<div></div><div class="axis">${[0,10,20,30,40,50,60].map(v=>`<span style="left:${x(v)}%">${v}\u00b0</span>`).join("")}</div>`;
+  list.forEach(({p,es,med})=>{h+=`<div class="lab"><span class="t">${p.time}</span><span class="n">${p.name} <small>${p.city}</small></span><span class="k">${med.toFixed(0)}\u00b0</span></div><div class="row" data-p="${p.id}">`;
+    h+=[0,10,20,30,40,50,60].map(v=>`<i class="tick" style="left:${x(v)}%"></i>`).join("");
+    es.forEach(([ph,e])=>{h+=`<span class="cell" data-d="${ph.d}" style="left:${x(e)}%;background:${rgb(ph.c)}"></span>`;});
+    h+=`</div>`;});
+  el.innerHTML=h;
+  el.addEventListener("mousemove",e=>{const c=e.target.closest(".cell");if(!c)return hideTip();const pid=+c.parentElement.dataset.p;showTip(e,byP[pid][+c.dataset.d],P[pid]);});
+  el.addEventListener("mouseleave",hideTip);
+})();
+
+// 11 each person's sky
+(function(){
+  const el=document.getElementById("jour11"), lens=document.getElementById("lens"), lensLab=lens.querySelector("span");
+  const idx=c=>(c[2]-c[0]+10)/130, light=c=>(c[0]+c[1]+c[2])/765;
+  const cls=c=>{const i=idx(c),l=light(c);if(c[0]>c[2]+8)return "dusk";if(l<.3)return "dark";if(i>.6)return "clear";if(i>.35)return "pale";if(l>.62)return "milk";return "grey";};
+  const WORD={clear:"clear blue most days",pale:"a pale, washed blue most days",milk:"more milk than blue, haze most days",grey:"grey more often than blue",dusk:"warm skies, shot late enough to catch the sun going",dark:"dark frames, the light often already gone"};
+  function describe(p){
+    const phs=Object.values(byP[p.id]).sort((a,b)=>a.d-b.d), n=phs.length, span=p.end-p.start+1, missed=span-n;
+    const counts={};phs.forEach(ph=>{const k=cls(ph.c);counts[k]=(counts[k]||0)+1;});
+    const order=Object.keys(counts).sort((a,b)=>counts[b]-counts[a]);
+    const bluest=phs.reduce((a,b)=>idx(b.c)>idx(a.c)?b:a), greyest=phs.reduce((a,b)=>idx(b.c)<idx(a.c)?b:a);
+    let streak=1,best=1;for(let i=1;i<phs.length;i++){streak=phs[i].d===phs[i-1].d+1?streak+1:1;best=Math.max(best,streak);}
+    const fixed=tmin(p.time), devs=phs.map(ph=>Math.abs(tmin(ph.t)-fixed)), late=devs.filter(v=>v>20).length, maxdev=Math.max(...devs);
+    const out=[];
+    out.push(n===1?`One afternoon, ${dstr(p.start)}.`:`${n} afternoons, ${dstr(p.start)} to ${dstr(p.end)}${missed?`, ${missed} missed`:", not one missed"}.`);
+    if(n>=3){ let line=WORD[order[0]]; if(order[1]&&counts[order[1]]>=n*.25) line+=`, ${order[1]==="dusk"?"some evenings gone orange":order[1]==="grey"?"grey on the others":order[1]==="clear"?"clear on the others":order[1]==="milk"?"hazy on the others":order[1]==="dark"?"dark on the others":"pale on the others"}`; out.push(line.charAt(0).toUpperCase()+line.slice(1)+"."); }
+    if(n>=5){ out.push(`Bluest on ${dstr(bluest.d)}, greyest on ${dstr(greyest.d)}.`); }
+    if(n>=10&&best>=7&&best<n) out.push(`Longest unbroken stretch, ${best} days.`);
+    if(n>=5){ if(maxdev<=10) out.push(`Always within ten minutes of ${p.time}.`); else if(late<=n*.15) out.push(`Nearly always on time; ${late===0?"never":late+" day"+(late>1?"s":"")} more than twenty minutes off.`); else out.push(`Loose with the clock: ${late} of ${n} days more than twenty minutes from ${p.time}.`); }
+    return out.join(" ");
+  }
+  window.skyDescribe=describe;
+  const list=[...P].map(p=>{const phs=Object.values(byP[p.id]);const med=[...phs].map(ph=>idx(ph.c)).sort((a,b)=>a-b)[Math.floor(phs.length/2)];return {p,med};}).sort((a,b)=>b.med-a.med);
+  el.innerHTML=list.map(({p})=>{let band="";for(let d=p.start;d<=p.end;d++){const ph=byP[p.id][d];band+=ph?`<div class="sl" data-d="${d}" style="background-image:url(${ph.i})"></div>`:`<div class="sl gap"></div>`;}
+    return `<div class="j" data-p="${p.id}"><div class="jband">${band}</div><div class="jcap"><h3>${p.name.split(" ")[0]}\u2019s sky<small>${p.area?p.area+", ":""}${p.city||"city unknown"}\u00a0\u00b7 ${p.time}</small></h3><p>${describe(p)}</p></div></div>`;}).join("");
+  el.addEventListener("mousemove",e=>{const sl=e.target.closest(".sl");if(!sl||sl.classList.contains("gap")){lens.style.display="none";return;}
+    const pid=+sl.closest(".j").dataset.p, ph=byP[pid][+sl.dataset.d];
+    lens.style.display="block";lens.style.backgroundImage=`url(${ph.i})`;lens.style.left=(e.clientX-110)+"px";lens.style.top=(e.clientY-250)+"px";lensLab.textContent=`${dstr(ph.d)} 2020, ${ph.t}`;});
+  el.addEventListener("mouseleave",()=>lens.style.display="none");
+})();
+
+// 12 the day it was
+(function(){
+  const E=window.SKY_EVENTS, SP=window.SKY_SPRITES; if(!E||!SP)return;
+  const stage=document.getElementById("day12"), who=document.getElementById("who12"), frame=document.getElementById("frame12");
+  const els={date:"date12",whom:"whom12",phase:"phase12",cases:"cases12",line:"line12",head:"head12",pos:"pos12"}; for(const k in els)els[k]=document.getElementById(els[k]);
+  const list=[...P].filter(p=>SP[p.id]).sort((a,b)=>a.name.localeCompare(b.name));
+  who.innerHTML=list.map(p=>`<option value="${p.id}">${p.name}${p.city?", "+p.city:""}</option>`).join("");
+  const PH=[[0,20,"Lockdown 1"],[21,39,"Lockdown 2"],[40,53,"Lockdown 3"],[54,67,"Lockdown 4"],[68,97,"Unlock 1"],[98,128,"Unlock 2"],[129,200,"Unlock 3"]];
+  const phase=d=>PH.find(([a,b])=>d>=a&&d<=b)[2];
+  const fmt=n=>n==null?null:n.toLocaleString("en-IN");
+  let pid=14, i=0; // start on Rishi if present
+  if(!SP[pid])pid=list[0].id;
+  function frames(){return SP[pid].days;}
+  function firstIndexForDay(d){return frames().indexOf(d);}
+  function show(){
+    const p=P[pid], days=frames(), d=days[i], ph=byP[pid][d];
+    frame.style.backgroundImage=`url(sprites/p${pid}.jpg)`;
+    const w=frame.clientWidth; frame.style.backgroundPosition=`0 ${-i*w*0.75}px`;
+    els.date.textContent=`${dstr(d)} 2020${ph?", "+ph.t:""}`;
+    els.whom.textContent=`${p.name}${p.area?", "+p.area:""}${p.city?", "+p.city:""} \u00b7 chose ${p.time}`;
+    els.phase.textContent=phase(d);
+    const st=E.state[p.city], dn=E.district[p.city], sc=st?E.stateCases[st]?.[d]:null, dc=dn?E.districtCases[p.city]?.[d]:null, ic=E.stateCases.India?.[d];
+    let c=[]; if(st&&sc!=null)c.push(`<b>${fmt(sc)}</b> new cases in ${st}`); if(dn&&dc!=null)c.push(`<b>${fmt(dc)}</b> in ${dn}`); if(ic!=null)c.push(`${fmt(ic)} across India`);
+    els.cases.innerHTML=c.length?c.join(", ")+".":"No count recorded for this day.";
+    const line=E.lines[d]; els.line.innerHTML=line?`${line}<small>Wikipedia, timeline of the COVID-19 pandemic in India</small>`:`<small>No entry in the timeline for this date.</small>`;
+    const HL=window.SKY_HEADLINES, hl=HL&&p.city&&HL[p.city]&&HL[p.city][d];
+    if(hl){ els.head.innerHTML=`<span class="hl-city">${hl.src}</span><a href="${hl.u}" target="_blank" rel="noopener">${hl.h}</a>${hl.more?`<small>${hl.more}</small>`:""}`; }
+    else els.head.textContent=`Local headline, ${p.city||"city"} edition, ${dstr(d)}: none found in the archive.`;
+    const uniq=[...new Set(days)]; els.pos.textContent=`day ${uniq.indexOf(d)+1} of ${uniq.length}`;
+    who.value=pid;
+  }
+  function step(k){const days=frames();let j=i+k;while(j>=0&&j<days.length&&days[j]===days[i])j+=k;if(j<0||j>=days.length)return;i=j;show();}
+  document.getElementById("prev12").onclick=()=>step(-1); document.getElementById("next12").onclick=()=>step(1);
+  who.onchange=()=>{pid=+who.value;i=0;show();};
+  stage.addEventListener("keydown",e=>{if(e.key==="ArrowRight"){step(1);e.preventDefault();}if(e.key==="ArrowLeft"){step(-1);e.preventDefault();}});
+  frame.addEventListener("click",()=>stage.focus());
+  window.addEventListener("resize",show);
+  show();
+})();
+
+// 13 your sky, played back
+(function(){
+  const who=document.getElementById("who13"), btn=document.getElementById("play13"), sp=document.getElementById("speed13"), spv=document.getElementById("speedv13"), band=document.getElementById("band13"), head=document.getElementById("head13"), nameEl=document.getElementById("name13"), descEl=document.getElementById("desc13"), lens=document.getElementById("lens"), lensLab=lens.querySelector("span");
+  document.getElementById("ctl13b").innerHTML=instSelect("inst13")+rangeSlider("range13",24)+`<label class="speed" style="margin-left:0"><input type="checkbox" id="snap13" checked> snap to scale</label>`;
+  const inst=document.getElementById("inst13"), rng=document.getElementById("range13"), rngv=document.getElementById("range13v"), snap=document.getElementById("snap13");
+  rng.oninput=()=>{rngv.textContent=rng.value==0?"none":rng.value+" semitones";};
+  const idx=c=>Math.max(0,Math.min(1,(c[2]-c[0]+10)/130)), PENT=[-12,-10,-8,-5,-3,0,2,4,7,9,12,14,16,19,21,24,26,28,31,33,36];
+  const freqOf=c=>{let st=12+(idx(c)-0.5)*rng.value;if(snap.checked)st=PENT.reduce((a,b)=>Math.abs(b-st)<Math.abs(a-st)?b:a);return 196*Math.pow(2,st/12);};
+  const list=[...P].sort((a,b)=>a.name.localeCompare(b.name));
+  who.innerHTML=list.map(p=>`<option value="${p.id}">${p.name}${p.city?", "+p.city:""}</option>`).join("");
+  let pid=10, d=0, ctx=null, timer=null, DECAY=0.62; if(!byP[pid])pid=list[0].id;
+  function build(){const p=P[pid];let h="";for(let k=p.start;k<=p.end;k++){const ph=byP[pid][k];h+=ph?`<div class="sl" data-d="${k}" style="background-image:url(${ph.i})"></div>`:`<div class="sl gap" data-d="${k}"></div>`;}
+    band.innerHTML=h; nameEl.innerHTML=`${p.name.split(" ")[0]}\u2019s sky<small>${p.area?p.area+", ":""}${p.city||"city unknown"}\u00a0\u00b7 ${p.time}\u00a0\u00b7 ${dstr(p.start)} to ${dstr(p.end)} 2020</small>`; descEl.textContent=window.skyDescribe?window.skyDescribe(p):""; d=p.start; who.value=pid; head.style.display="none";}
+  function lastBefore(k){for(let j=k-1;j>=P[pid].start;j--){if(byP[pid][j])return [byP[pid][j],k-j];}return null;}
+  function sound(k){if(!ctx)return;const ph=byP[pid][k];if(ph){playNote(ctx,ctx.currentTime,freqOf(ph.c),inst.value,.3,0);return;}const lb=lastBefore(k);if(!lb)return;const g=Math.pow(DECAY,lb[1]);if(g>.03)playNote(ctx,ctx.currentTime,freqOf(lb[0].c),inst.value,.3*g,0);}
+  function mark(k){const p=P[pid],span=p.end-p.start+1;head.style.display="block";head.style.left=((k-p.start+0.5)/span*100)+"%";}
+  function step(){const p=P[pid];mark(d);sound(d);d=d>=p.end?p.start:d+1;}
+  function start(){btn.textContent="Pause";timer=setInterval(step,1000/sp.value);}
+  function stop(){clearInterval(timer);timer=null;btn.textContent="Play";}
+  function ensure(){ctx=ctx||new (window.AudioContext||window.webkitAudioContext)();ctx.resume();}
+  btn.onclick=()=>{if(timer){stop();return;}ensure();start();};
+  sp.oninput=()=>{spv.textContent=sp.value+" days/s";if(timer){clearInterval(timer);timer=setInterval(step,1000/sp.value);}};
+  who.onchange=()=>{stop();pid=+who.value;build();};
+  let hoverDay=null;
+  band.addEventListener("mousemove",e=>{const sl=e.target.closest(".sl");if(!sl)return;const k=+sl.dataset.d;
+    if(k!==hoverDay){hoverDay=k;if(!ctx&&!timer){/* first hover unlocks nothing; audio needs a click */}else{if(!timer){mark(k);sound(k);}}}
+    const ph=byP[pid][k];if(ph){lens.style.display="block";lens.style.backgroundImage=`url(${ph.i})`;lens.style.left=(e.clientX-110)+"px";lens.style.top=(e.clientY-250)+"px";lensLab.textContent=`${dstr(ph.d)} 2020, ${ph.t}`;}else{lens.style.display="none";}});
+  band.addEventListener("mouseleave",()=>{lens.style.display="none";hoverDay=null;});
+  band.addEventListener("click",e=>{ensure();const sl=e.target.closest(".sl");if(sl){const k=+sl.dataset.d;mark(k);sound(k);}});
+  build();
+})();
+
+// 14 what moved
+(function(){
+  const M=window.SKY_MOVED; if(!M)return; const el=document.getElementById("moved14");
+  const ids=Object.keys(M).map(Number).sort((a,b)=>M[b].n-M[a].n);
+  el.innerHTML=ids.map(id=>{const p=P[id],m=M[id];
+    return `<div class="mv"><div><img class="ov" src="${m.ov}" alt="Average frame for ${p.name} with change spots marked"><h3>${p.name.split(" ")[0]}\u2019s frame<small>${p.city||""}\u00a0\u00b7 ${m.n} days</small></h3></div><div>${m.strips.map((st,k)=>`<div class="strip"><div class="lab">spot ${k+1}\u00a0\u00b7 ${dstr(st.days[0])} to ${dstr(st.days[st.days.length-1])}</div><div class="cells">${st.days.map((d,j)=>`<i style="background-image:url(${st.i});background-position:-${j*56}px 0" title="${dstr(d)} 2020"></i>`).join("")}</div></div>`).join("")}</div></div>`;}).join("");
+})();
+
+// lab shell: nav panel on the left, one approach in the main panel, by hash
+(function(){
+  const rooms=[
+    ["Sheets and grids",[[1,"The attendance sheet","Rows by clock time, one swatch per day, gaps left as gaps."],[3,"The averaged sky","Every frame a person shot, averaged; every day\u2019s sky, averaged."],[4,"The frame as fingerprint","The fixed part of each frame, sky replaced by the day\u2019s colour."],[6,"Ribbons","Sky slices hung from a rod, height by clock time, length by days."],[7,"A map that fills and empties","Cities coloured by that day\u2019s sky."]]],
+    ["Time and light",[[2,"The grid timelapse","All 27 cells running a day per frame, with a speed control."],[10,"Same clock, different sun","Each photo placed by the sun\u2019s elevation, not the date."],[12,"The day it was","One person, one frame at full size, stepped by keyboard."],[15,"The air at that hour","The official AQI at the hour of every photo, next to the sky it saw."],[16,"Cleanest air, dirtiest air","Each person\u2019s two photographs: the best-air day and the worst."]]],
+    ["Sound",[[5,"The 4 pm choir","A day swept down the clock, one beep per person at their minute."],[9,"Sky tunes","Blueness as pitch, one note per day, people played together, gaps held and fading."],[13,"Your sky, played back","One person\u2019s tune to the fore, explored by hand."]]],
+    ["Each person",[[11,"Each person\u2019s sky","Full-width bands of real sky, a written character, a lens."],[14,"What moved","The places below the sky that changed while the person kept still."]]],
+    ["Set aside",[[8,"What the sky said, what the instruments said","Blueness against an empty slot for the official record."]]]
+  ];
+  const PUBLIC=[16, 9, 2, 5, 6, 15, 11, 4];
+  const byId=Object.fromEntries(rooms.flatMap(([,xs])=>xs).map(x=>[x[0],x]));
+  rooms.length=0; rooms.push(["Models",PUBLIC.map(n=>byId[n])]);
+  const all=rooms.flatMap(([,xs])=>xs); const order=all.map(x=>x[0]); const disp=n=>order.indexOf(+n)+1;
+  // build the panels: everything that exists moves into <main>, the nav is a new <aside>
+  const wrap=document.querySelector(".wrap"), main=document.createElement("main"); main.className="main";
+  while(wrap.firstChild)main.appendChild(wrap.firstChild);
+  const side=document.createElement("aside"); side.className="side";
+  function renderSide(){
+    const item=([n,t],cls="")=>`<li><a href="#p${n}" data-n="${n}" class="${cls}"><span class="n">${disp(n)}</span><span>${t}</span></a></li>`;
+    side.innerHTML=`<a class="brand" href="#">Covid Sky Lab</a><div class="sub">27 people \u00b7 one sky a day \u00b7 2020</div>`
+      +`<h4>Models</h4><ul>${all.map(x=>item(x)).join("")}</ul>`
+      +`<h4>References</h4><ul><li><a href="#refs" data-n="refs"><span class="n">*</span><span>The work these draw on</span></a></li></ul>`;
+    side.querySelectorAll("a[data-n]").forEach(a=>a.classList.toggle("on",a.dataset.n===current));
+  }
+  wrap.appendChild(side); wrap.appendChild(main);
+  const hdr=main.querySelector("header.top");
+  const nav=document.createElement("div"); nav.className="labnav"; hdr.parentNode.insertBefore(nav,hdr);
+  const roomsEl=document.createElement("div"); roomsEl.className="rooms"; hdr.appendChild(roomsEl);
+  roomsEl.innerHTML=rooms.map(([h,xs])=>`<h3>${h}</h3><ul>${xs.map(([n,t,d])=>`<li data-n="${n}"><span class="n">${disp(n)}</span><div><a href="#p${n}">${t}</a><span>${d}</span></div></li>`).join("")}</ul>`).join("");
+  main.querySelectorAll("section.proto").forEach(sec=>{if(!order.includes(+sec.id.slice(1)))sec.remove();});
+  // stamp the display number onto each section head
+  main.querySelectorAll("section.proto").forEach(sec=>{const n=+sec.id.slice(1);const el=sec.querySelector(".num");if(el&&order.includes(n))el.textContent=disp(n);});
+  // curation: Save and Delete on each approach. Shared store when the page runs on claude.ai (so Claude can read the decisions back), local storage otherwise.
+  const state={}; let store=null; let current=null;
+  const LS=k=>{try{return JSON.parse(localStorage.getItem("skylab-"+k)||"null");}catch(e){return null;}};
+  function applyState(){
+    renderSide();
+    roomsEl.querySelectorAll("li[data-n]").forEach(li=>{const st=state[li.dataset.n]?.status;li.classList.toggle("saved",st==="saved");li.classList.toggle("deleted",st==="deleted");});
+    updateNav();
+  }
+  async function setStatus(n,status){
+    const rec=status?{status,at:new Date().toISOString()}:null;
+    if(rec)state[n]=rec; else delete state[n];
+    try{localStorage.setItem("skylab-"+n,JSON.stringify(rec));}catch(e){}
+    applyState();
+    if(store){try{rec?await store.doc("approaches/p"+n).set(rec):await store.doc("approaches/p"+n).delete();}catch(e){}}
+  }
+
+  function updateNav(){
+    if(!current)return; const n=current, st=state[n]?.status;
+    const sv=nav.querySelector(".act.save"), dl=nav.querySelector(".act.del");
+    if(sv){sv.classList.toggle("on",st==="saved");sv.textContent=st==="saved"?"Saved":"Save";}
+    if(dl){dl.textContent=st==="deleted"?"Restore":"Delete";}
+  }
+  nav.addEventListener("click",e=>{const b=e.target.closest(".act");if(!b||!current)return;const st=state[current]?.status;
+    if(b.classList.contains("save"))setStatus(current,st==="saved"?null:"saved");
+    else setStatus(current,st==="deleted"?null:"deleted");});
+  function route(){
+    const h=location.hash.replace("#",""); const m=h.match(/^p(\d+)$/); const n=m?+m[1]:null;
+    document.body.classList.toggle("room",!!n||h==="refs"); document.body.classList.toggle("home",!n&&h!=="refs");
+    main.querySelectorAll("section.proto").forEach(sec=>{sec.style.display=(n&&sec.id==="p"+n)?"":"none";});
+    main.querySelector("section.refs").style.display=(h==="refs")?"":"none";
+    current=n?String(n):h; side.querySelectorAll("a[data-n]").forEach(a=>a.classList.toggle("on",a.dataset.n===current));
+    if(n){const i=order.indexOf(n),prev=order[(i-1+order.length)%order.length],next=order[(i+1)%order.length],t=all.find(x=>x[0]===n);
+      nav.innerHTML=`<span class="here">${disp(n)}\u00a0\u00b7 ${t?t[1]:""}</span><span class="spacer"></span><a href="#p${prev}">\u2190 ${disp(prev)}</a><a href="#p${next}">${disp(next)} \u2192</a>`;updateNav();}
+    else if(h==="refs"){nav.innerHTML=`<span class="here">Reading</span>`;}
+    window.scrollTo(0,0); requestAnimationFrame(()=>window.dispatchEvent(new Event("resize")));
+  }
+  window.addEventListener("hashchange",route); route(); applyState();
+})();
+
+// 15 the air at that hour
+(function(){
+  const A=window.SKY_AQI; if(!A)return; const V=A.v, SRC=A.src;
+  const el=document.getElementById("air15");
+  const withData=[...P].filter(p=>Object.keys(byP[p.id]).some(d=>V[p.id+":"+d])).sort((a,b)=>b.n-a.n);
+  const without=[...P].filter(p=>!withData.includes(p)).map(p=>p.name.split(" ")[0]);
+  const AQMAX=300, val=(pid,d)=>V[pid+":"+d];
+  let h=`<div></div><div class="axis">${monthStarts.map(([d,m])=>`<span style="left:${d/N*100}%">${m}</span>`).join("")}</div>`;
+  withData.forEach(p=>{const src=SRC[p.id]?SRC[p.id].src:"";
+    h+=`<div class="lab"><span class="t">${p.time}</span><span class="n">${p.name} <small>${src}</small></span><span class="k">${Object.keys(byP[p.id]).filter(d=>val(p.id,d)).length}/${p.n}</span></div><div class="row" data-p="${p.id}"><i class="base"></i>`;
+    h+=monthStarts.map(([d])=>`<i class="tick" style="left:${d/N*100}%"></i>`).join("");
+    Object.values(byP[p.id]).forEach(ph=>{const v=val(p.id,ph.d);
+      h+=`<span class="cell" data-d="${ph.d}" style="left:${ph.d/N*100}%;width:${100/N}%;background:${rgb(ph.c)}"></span>`;
+      h+=v?`<i class="bar" data-d="${ph.d}" style="left:${ph.d/N*100}%;height:${Math.min(1,v.aqi/AQMAX)*16}px"></i>`:`<i class="bar none" style="left:${ph.d/N*100}%"></i>`;});
+    h+=`</div>`;});
+  el.innerHTML=h;
+  el.addEventListener("mousemove",e=>{const c=e.target.closest(".cell,.bar");if(!c||!c.dataset.d)return hideTip();const pid=+c.parentElement.dataset.p,ph=byP[pid][+c.dataset.d],v=val(pid,ph.d);showTip(e,ph,P[pid]);if(v)tip.innerHTML+=`<br>AQI ${v.aqi}${v.pm!=null?", PM2.5 "+v.pm:""}${v.off?` (${Math.abs(v.off)} h ${v.off<0?"earlier":"later"})`:v.off===null?" (daily figure)":""}`;});
+  el.addEventListener("mouseleave",hideTip);
+  // scatter: blueness vs AQI, one dot per photo, coloured by the actual sky swatch
+  const pts=[];withData.forEach(p=>Object.values(byP[p.id]).forEach(ph=>{const v=val(p.id,ph.d);if(v)pts.push([ph.c[2]-ph.c[0],v.aqi,ph,p]);}));
+  const W=1060,H=340,L=46,R=16,T=16,B=36,xmin=-60,xmax=120,ymin=0,ymax=AQMAX;
+  const x=b=>L+(Math.max(xmin,Math.min(xmax,b))-xmin)/(xmax-xmin)*(W-L-R), y=a=>T+(ymax-Math.min(ymax,a))/(ymax-ymin)*(H-T-B);
+  let sv=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Sky blueness against AQI, one dot per photo"><g class="grid">`;
+  for(let a=0;a<=ymax;a+=50)sv+=`<line x1="${L}" x2="${W-R}" y1="${y(a)}" y2="${y(a)}"/><text x="${L-8}" y="${y(a)+4}" text-anchor="end">${a}</text>`;
+  sv+=`</g><g class="ax">`;for(let b=-60;b<=120;b+=30)sv+=`<line class="ax" x1="${x(b)}" x2="${x(b)}" y1="${y(0)}" y2="${y(0)+5}"/><text x="${x(b)}" y="${H-14}" text-anchor="middle">${b}</text>`;
+  sv+=`</g><text x="${W-R}" y="${H-2}" text-anchor="end" style="font-size:10.5px">blueness of the sky swatch, blue minus red \u2192</text><text x="${L}" y="${T-4}" style="font-size:10.5px">AQI at that hour</text>`;
+  const cpcb=[[0,50,"Good"],[50,100,"Satisfactory"],[100,200,"Moderate"],[200,300,"Poor"]];
+  cpcb.forEach(([a,b,nm])=>{sv+=`<text x="${W-R-4}" y="${y((a+b)/2)+4}" text-anchor="end" style="font-size:10px">${nm}</text>`;});
+  sv+=pts.map(([b,a,ph,p])=>`<circle class="pt" cx="${x(b)}" cy="${y(a)}" r="4.5" fill="${rgb(ph.c)}"><title>${p.name}, ${dstr(ph.d)} ${ph.t}: AQI ${a}, blueness ${b}</title></circle>`).join("");
+  sv+=`</svg>`; document.getElementById("scatter15").innerHTML=sv;
+  // a plain correlation, so the answer is stated rather than implied
+  const n=pts.length,mx=pts.reduce((s,q)=>s+q[0],0)/n,my=pts.reduce((s,q)=>s+q[1],0)/n;
+  const r=pts.reduce((s,q)=>s+(q[0]-mx)*(q[1]-my),0)/Math.sqrt(pts.reduce((s,q)=>s+(q[0]-mx)**2,0)*pts.reduce((s,q)=>s+(q[1]-my)**2,0));
+  document.getElementById("leg15").innerHTML=`<span>${n} photos with a reading</span><span>correlation between blueness and AQI: ${r.toFixed(2)}</span><span>dot colour is the sky swatch itself</span>`;
+  document.getElementById("note15").innerHTML=`<b>Source.</b> CPCB hourly station data as compiled in the Kaggle dataset Air Quality Data in India (2015 to 2020), which ends on 1 July 2020, so July and August have no readings. Each photo takes the reading at its nearest hour, or up to two hours either side when that hour is missing. City rows use the city average across its stations; where a single station sat closer to the person (Vasai West for Manish, Lumpyngngad for Jon) that station is used. <b>Pune</b> has no hourly station in that compilation, so Pune rows use the city's daily AQI from the CPCB bulletin, a 24-hour average, from a separate Pune dataset covering 2017 to 2024; their bars are the day's figure, not the hour's. <b>No reading</b> for ${without.join(", ")}: Ghaziabad, Navi Mumbai and Kozhikode stations are absent for 2020, and two people have no city. <b>AQI</b> is the Indian index: under 50 good, under 100 satisfactory, under 200 moderate, under 300 poor.`;
+})();
+
+// 16 cleanest air, dirtiest air
+(function(){
+  const A=window.SKY_AQI, SP=window.SKY_SPRITES; if(!A||!SP)return; const V=A.v;
+  const el=document.getElementById("pairs16");
+  const people=[...P].filter(p=>SP[p.id]).map(p=>{const rs=Object.values(byP[p.id]).map(ph=>[ph,V[p.id+":"+ph.d]]).filter(x=>x[1]);if(rs.length<2)return null;
+    const best=rs.reduce((a,b)=>b[1].aqi<a[1].aqi?b:a), worst=rs.reduce((a,b)=>b[1].aqi>a[1].aqi?b:a);return {p,best,worst,n:rs.length};}).filter(Boolean).sort((a,b)=>(b.worst[1].aqi-b.best[1].aqi)-(a.worst[1].aqi-a.best[1].aqi));
+  const frame=(pid,d)=>{const i=SP[pid].days.indexOf(d);return `<div class="fr" data-i="${i}" style="background-image:url(sprites/p${pid}.jpg)"></div>`;};
+  const cap=(tag,ph,v)=>`<div class="cap"><span class="tag">${tag}</span><b>${dstr(ph.d)} 2020, ${ph.t}</b><span class="aq">AQI ${v.aqi}</span>${v.pm!=null?", PM2.5 "+v.pm:""}<br>blueness ${ph.c[2]-ph.c[0]}\u00a0\u00b7 ${v.s}</div>`;
+  el.innerHTML=people.map(({p,best,worst,n})=>`<div class="pair" data-p="${p.id}"><div><h3>${p.name.split(" ")[0]}<small>${p.city||""}\u00a0\u00b7 ${p.time}<br>${n} days with a reading<br>${worst[1].aqi-best[1].aqi} points between them</small></h3></div><div>${frame(p.id,best[0].d)}${cap("cleanest",best[0],best[1])}</div><div>${frame(p.id,worst[0].d)}${cap("dirtiest",worst[0],worst[1])}</div></div>`).join("");
+  function place(){el.querySelectorAll(".fr").forEach(f=>{const w=f.clientWidth;f.style.backgroundPosition=`0 ${-(+f.dataset.i)*w*0.75}px`;});}
+  window.addEventListener("resize",place); place();
+})();
+
+// references
+(function(){
+  const R=[
+   ["The photographer you remembered",[
+    ["Beijing Air Now (\u4E00\u76EE\u4E86\u7136)","Zou Yi, 2013 to present. Same skyscraper from his window every morning, posted with the day's AQI; shown as calendar grids and long scrolls.","https://www.huffpost.com/entry/beijing-air-pollution-photos_n_5698a1c6e4b0b4eb759e0155"],
+    ["Zou Yi, ten years on","Global Times, 2022. The 3,650-photo mark and the giant scrolls.","https://www.globaltimes.cn/page/202208/1272130.shtml"]]],
+   ["Same view, daily sky, sky colour",[
+    ["A Window Into Delhi's Deadly Pollution","Reuters Graphics, 2019. Fixed rooftop camera paired with a monitoring station.","https://www.informationisbeautifulawards.com/showcase/4006-a-window-into-delhi-s-deadly-pollution"],
+    ["Sunday Paintings","Byron Kim, 2001 to present. A patch of sky every Sunday with date, place and a diary line.","https://hyperallergic.com/byron-kim-sunday-paintings-james-cohan-2018/"],
+    ["Average Color of the Sky","Holland Hopson, 2022. Sky sampled every second, averaged per minute, printed as strips.","https://hollandhopson.com/average-color-of-the-sky/"],
+    ["Sky Color in Five Cities","Deeptanshu Malik, Medium. One bar per day of the year, coloured by sky, from weather data.","https://medium.com/@deeptanshumalik/data-visualization-sky-color-in-san-francisco-seattle-new-york-boston-and-tel-aviv-8e996a249f84"],
+    ["The Shortest Day at My House in Amsterdam","Jan Dibbets, 1970. One window, a frame every six minutes, an 8 by 10 grid.","https://www.moma.org/audio/playlist/202"],
+    ["Seascapes","Hiroshi Sugimoto, 1980 to present. Identical composition, only light and weather change.","https://www.sugimotohiroshi.com/seascapes-1"],
+    ["Suns from Sunsets from Flickr","Penelope Umbrico, 2006 to present. Thousands of crowd-sourced suns, count in the title.","http://www.penelopeumbrico.net/index.php/project/suns-from-sunsets-from-flickr/"],
+    ["Sky Series","Eric Cahan. Place and exact time as the whole caption.","https://benrubigallery.com/exhibition/46/sky-series"],
+    ["Trying to Remember the Color of the Sky on That September Morning","Spencer Finch, 2014. One blue square per person.","https://www.spencerfinch.com/trying-to-remember-the-color-of-the-sky-on-that-september-morning"],
+    ["Every Playboy Centerfold, The Decades","Jason Salavon, 2002. The averaging method.","http://salavon.com/work/EveryPlayboyCenterfoldDecades/"],
+    ["Sky Palette (app)","Daily sky photo shown as a colour grid. The vernacular version.","https://play.google.com/store/apps/details?id=dev.apptect.sky_palette"]]],
+   ["Data art about air",[
+    ["Air of the Anthropocene","Robin Price and Francis Pope, 2018 to 2024. PM sensor drives an LED through a long exposure; shot in Delhi and Palampur.","https://www.birmingham.ac.uk/news/2024/painting-with-light-illuminates-photo-evidence-of-air-pollution"],
+    ["Air Transformed","Stefanie Posavec with Miriam Quick, 2015. Each necklace segment is a day's PM10.","https://miriamquick.com/air-transformed"],
+    ["Pollution Pods","Michael Pinsky, 2017. Five domes, including New Delhi's air.","https://www.michaelpinsky.com/category/pollution/"],
+    ["Smog Free Tower","Daan Roosegaarde, 2015. Captured smog pressed into rings.","https://www.studioroosegaarde.net/project/smog-free-tower"],
+    ["Breath by Breath","Vibha Galhotra, 2016 to 17. Performance at Delhi monitoring sites.","https://artwork.earth/en/kunstwerk/breath-by-breath/"],
+    ["Air-Ink","Anirudh Sharma, Graviky Labs. Ink from captured carbon.","https://www.unep.org/news-and-stories/story/turning-air-pollution-art"],
+    ["Airborne Particle Levels Plummet in Northern India","NASA Earth Observatory, 21 April 2020. The satellite view of your exact weeks.","https://science.nasa.gov/earth/earth-observatory/airborne-particle-levels-plummet-in-northern-india-146596/"]]],
+   ["Many people, same ritual",[
+    ["View From My Window","Barbara Duriau, from 22 March 2020. Two million people, one window each.","https://www.barbaraduriau.com/view-from-my-window"],
+    ["Same Place Same Time","Laura Halsey Brown, 2020. One beach, twice a day, monthly grids.","https://www.artsterritoryexchange.com/blog/2020/5/11/same-place-same-time-daily-practices-during-lockdown-laura-halsey-brown"],
+    ["Collective Sky","Eri King, 2020. Strangers send a sky with name, date, location.","https://eriking.net/collective-sky"],
+    ["Dear Data","Giorgia Lupi and Stefanie Posavec, 2014 to 15. Personal data drawn by hand on postcards.","https://www.stefanieposavec.com/projects/dear-data"],
+    ["I Got Up","On Kawara, 1968 to 79. Time, date and address, stamped, twice a day.","https://www.metmuseum.org/art/collection/search/284464"],
+    ["One Year Performance 1980 to 81 (Time Clock Piece)","Tehching Hsieh. A clock punched hourly for a year, one frame per punch.","https://www.tehchinghsieh.net/oneyearperformance1980-1981"],
+    ["A Day in the World","Aday.org, 15 May 2012. 100,000 photos from one day.","https://loeildelaphotographie.com/en/aday-org-a-day-in-the-life-of-the-world/"],
+    ["Ten Thousand Cents","Aaron Koblin and Takashi Kawashima, 2008. Many hands, one image.","https://www.cooperhewitt.org/2015/08/30/16245/"],
+    ["Today","Jonathan Harris, 2010. One photo and one story a day for 443 days.","https://jjh.org/today"],
+    ["Picturing Lockdown","Historic England, 2020. One week, 3,000 submissions.","https://historicengland.org.uk/images-books/archive/collections/photographs/picturing-lockdown/"]]],
+   ["The 2020 sky itself",[
+    ["Dhauladhar range seen from Jalandhar","The Quint, 3 April 2020. The most-shared Indian lockdown sky.","https://www.thequint.com/news/india/himachal-mountain-range-visible-from-jalandhar-netizens-laud-clear-skies"],
+    ["Himalayas visible from Punjab","CNN, April 2020.","https://edition.cnn.com/travel/article/himalayas-visible-lockdown-india-scli-intl"],
+    ["India's cities see clear blue skies","NPR, 10 April 2020. The Delhi AQI 93 figure.","https://www.npr.org/sections/coronavirus-live-updates/2020/04/10/831592401/with-coronavirus-lockdown-indias-cities-see-clear-blue-skies-as-air-pollution-dr"],
+    ["Delhi's clean air","Washington Post, 10 April 2020.","https://www.washingtonpost.com/world/asia_pacific/india-coronavirus-delhi-clean-air-pollution/2020/04/10/ac23dd1e-783e-11ea-a311-adb1344719a9_story.html"],
+    ["Rooftop","Sohrab Hura, Magnum, 2020. Delhi rooftop through the lockdown.","https://www.magnumphotos.com/newsroom/rooftop-sohrab-hura/"]]]
+  ];
+  document.getElementById("reflists").innerHTML=R.map(([h,items])=>`<div class="refgroup"><h3>${h}</h3><ul class="reflist">${items.map(([t,d,u])=>`<li><b>${t}</b><span>${d}</span><a class="u" href="${u}" target="_blank" rel="noopener">${u.replace(/^https?:\/\/(www\.)?/,"").slice(0,60)}${u.length>68?"…":""}</a></li>`).join("")}</ul></div>`).join("");
+})();
+})();
+</script>
+</body>
+</html>
